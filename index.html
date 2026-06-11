@@ -1112,7 +1112,7 @@
   <div class="reveal vp-wrap" id="vp-v1">
     <div class="vp-shell">
       <video class="vp-video" id="vid-v1" preload="metadata" playsinline>
-        <source src="video1.mov" type="video/mp4">
+        <source src="video1.mp4" type="video/mp4">
         Seu navegador não suporta vídeo HTML5.
       </video>
       <div class="vp-overlay" id="vp-overlay-v1">
@@ -1362,7 +1362,7 @@
   <div class="reveal vp-wrap" id="vp-v3">
     <div class="vp-shell">
       <video class="vp-video" id="vid-v3" preload="metadata" playsinline>
-        <source src="video3.mov" type="video/mp4">
+        <source src="video3.mp4" type="video/mp4">
         Seu navegador não suporta vídeo HTML5.
       </video>
       <div class="vp-overlay" id="vp-overlay-v3">
@@ -1475,7 +1475,7 @@
   <div class="reveal vp-wrap" id="vp-v4">
     <div class="vp-shell">
       <video class="vp-video" id="vid-v4" preload="metadata" playsinline>
-        <source src="video4.mov" type="video/mp4">
+        <source src="video4.mp4" type="video/mp4">
         Seu navegador não suporta vídeo HTML5.
       </video>
       <div class="vp-overlay" id="vp-overlay-v4">
@@ -1673,7 +1673,7 @@
   <div class="reveal vp-wrap" id="vp-v5">
     <div class="vp-shell">
       <video class="vp-video" id="vid-v5" preload="metadata" playsinline>
-        <source src="video5.mov" type="video/mp4">
+        <source src="video5.mp4" type="video/mp4">
         Seu navegador não suporta vídeo HTML5.
       </video>
       <div class="vp-overlay" id="vp-overlay-v5">
@@ -1827,15 +1827,26 @@
           </div>
         </div>
       </div>
-      <p class="vt-hint">Quando publicar no YouTube, cole o link aqui e ativamos o embed.</p>
+      <p class="vt-hint" style="padding:0.8rem 2rem 1.2rem;width:100%;max-width:960px">Quando publicar no YouTube, cole o link aqui e ativamos o embed.</p>
     </div>
     <div class="vt-strip vt-strip-bottom"></div>
   </div>
 
   <style>
-  .vt-youtube-wrap { margin: 3rem -2rem; }
+  /* VT fullwidth — mesmo padrão do carrossel */
+  .vt-youtube-wrap {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: 3rem;
+    margin-bottom: 0;
+    overflow: hidden;
+  }
 
-  /* Tiras coloridas finas (moldura da moldura) */
+  /* Tiras coloridas finas */
   .vt-strip { height: 5px; }
   .vt-strip-top {
     background: linear-gradient(90deg,
@@ -1856,26 +1867,24 @@
       var(--amarelo-vivo) 83.3%, var(--amarelo-vivo) 100%);
   }
 
-  /* Fundo amarelo predominante */
+  /* Fundo amarelo predominante — fullwidth */
   .vt-bg {
     background: var(--amarelo-vivo);
-    padding: 2.8rem 2rem;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  /* Janela do vídeo — flutuante sobre o fundo amarelo */
+  /* Janela do vídeo — ocupa toda a largura igual à foto do carrossel */
   .vt-window {
     width: 100%;
-    max-width: 800px;
+    max-width: 960px;
     background: #0D0D0D;
-    border-radius: 10px;
+    border-radius: 0;
     overflow: hidden;
     box-shadow:
-      0 6px 0 3px var(--azul),
-      0 18px 60px rgba(0,0,0,.5),
-      0 0 0 3px rgba(255,255,255,.12);
+      0 0 0 3px rgba(255,255,255,.06);
   }
 
   .vt-inner {
