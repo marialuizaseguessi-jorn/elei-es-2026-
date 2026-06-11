@@ -1,0 +1,2495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Voto que o Brasil Levou Séculos para Conquistar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #2D6A2D;
+    --amarelo: #F5C518;
+    --amarelo-vivo: #F0B429;
+    --azul: #1B3F8B;
+    --azul-claro: #4A90D9;
+    --vermelho: #C0392B;
+    --creme: #F7F3EC;
+    --escuro: #1A1A1A;
+    --cinza: #5A5A5A;
+    --cinza-claro: #E8E4DE;
+    --branco: #FAFAFA;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--creme);
+    color: var(--escuro);
+    overflow-x: hidden;
+  }
+
+  /* ─── BARRA PROGRESSO ─── */
+  #progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: linear-gradient(90deg, var(--amarelo-vivo), var(--verde));
+    width: 0%; z-index: 1000;
+    transition: width 0.1s linear;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed; top: 3px; left: 0; right: 0;
+    background: rgba(247,243,236,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--cinza-claro);
+    z-index: 999; padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 52px;
+  }
+
+  .nav-logo {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700; font-size: 0.75rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--azul);
+  }
+
+  .nav-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem; font-weight: 500;
+    background: var(--amarelo-vivo);
+    color: var(--escuro);
+    padding: 3px 10px; border-radius: 2px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    background: var(--azul);
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 4rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(245,197,24,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(45,106,45,0.2) 0%, transparent 40%);
+  }
+
+  .hero-wave {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 8px;
+    background: linear-gradient(90deg,
+      var(--verde) 0%, var(--verde) 12%,
+      var(--amarelo-vivo) 12%, var(--amarelo-vivo) 24%,
+      var(--azul-claro) 24%, var(--azul-claro) 36%,
+      #6B9E6B 36%, #6B9E6B 48%,
+      var(--amarelo-vivo) 48%, var(--amarelo-vivo) 60%,
+      var(--azul-claro) 60%, var(--azul-claro) 72%,
+      var(--verde) 72%, var(--verde) 84%,
+      #8AB8D4 84%, #8AB8D4 100%
+    );
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--amarelo-vivo);
+    margin-bottom: 1.2rem;
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  #hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4.8rem);
+    font-weight: 900;
+    color: white;
+    line-height: 1.05;
+    max-width: 820px;
+    margin-bottom: 1.5rem;
+    opacity: 0; transform: translateY(30px);
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+
+  #hero h1 em {
+    color: var(--amarelo-vivo);
+    font-style: italic;
+  }
+
+  .hero-subtitle {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: rgba(255,255,255,0.75);
+    max-width: 560px;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-meta {
+    display: flex; gap: 2rem; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.9s forwards;
+  }
+
+  .hero-meta span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.05em;
+  }
+
+  .hero-meta strong {
+    color: rgba(255,255,255,0.85);
+    font-weight: 500;
+  }
+
+  .scroll-hint {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-top: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.2s forwards;
+  }
+
+  .scroll-arrow {
+    width: 20px; height: 20px;
+    border-right: 1px solid rgba(255,255,255,0.3);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    transform: rotate(45deg);
+    animation: bounce 1.5s infinite;
+  }
+
+  /* ─── CONTEÚDO PRINCIPAL ─── */
+  .story-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  /* ─── CHAPÉU / LEAD ─── */
+  .lead-block {
+    border-left: 4px solid var(--amarelo-vivo);
+    padding-left: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .lead-block p {
+    font-size: 1.3rem;
+    line-height: 1.7;
+    color: var(--cinza);
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  /* ─── PARÁGRAFOS ─── */
+  .story-container p {
+    font-size: 1.1rem;
+    line-height: 1.85;
+    margin-bottom: 1.6rem;
+    color: #2C2C2C;
+  }
+
+  /* ─── TÍTULOS SEÇÃO ─── */
+  .section-marker {
+    display: flex; align-items: center; gap: 1rem;
+    margin: 4rem 0 2rem;
+  }
+
+  .section-marker::before {
+    content: '';
+    display: block; width: 40px; height: 3px;
+    background: var(--amarelo-vivo);
+    flex-shrink: 0;
+  }
+
+  .section-marker h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--azul);
+    line-height: 1.2;
+  }
+
+  /* ─── PULLQUOTE ─── */
+  .pullquote {
+    background: var(--azul);
+    color: white;
+    padding: 2.5rem 2rem;
+    margin: 3rem -2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pullquote::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    color: rgba(245,197,24,0.2);
+    position: absolute;
+    top: -1rem; left: 1rem;
+    line-height: 1;
+  }
+
+  .pullquote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem !important;
+    line-height: 1.5 !important;
+    color: white !important;
+    font-style: italic;
+    font-weight: 700;
+    position: relative; z-index: 1;
+    margin-bottom: 1rem !important;
+  }
+
+  .pullquote cite {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    color: var(--amarelo-vivo);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  /* ─── PLACEHOLDERS DE MÍDIA ─── */
+  .media-placeholder {
+    margin: 3rem -1rem;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Vídeo Reels */
+  .placeholder-reels {
+    background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);
+    aspect-ratio: 9/16;
+    max-height: 600px;
+    max-width: 340px;
+    margin: 3rem auto;
+    border-radius: 12px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    border: 2px dashed rgba(245,197,24,0.4);
+    position: relative;
+  }
+
+  .placeholder-reels .media-icon {
+    width: 60px; height: 60px;
+    background: var(--amarelo-vivo);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .play-triangle {
+    width: 0; height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 20px solid var(--escuro);
+    margin-left: 4px;
+  }
+
+  .placeholder-reels .media-type {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--amarelo-vivo);
+    margin-bottom: 0.5rem;
+  }
+
+  .placeholder-reels .media-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 500;
+    color: white;
+    line-height: 1.4;
+  }
+
+  .placeholder-badge {
+    position: absolute; top: 1rem; right: 1rem;
+    background: rgba(255,255,255,0.1);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    padding: 3px 8px; border-radius: 2px;
+  }
+
+  /* Podcast/Áudio */
+  .placeholder-audio {
+    background: var(--verde);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    margin: 2.5rem 0;
+    display: flex; align-items: center; gap: 1.5rem;
+    border: 2px dashed rgba(255,255,255,0.3);
+  }
+
+  .audio-icon {
+    width: 50px; height: 50px; flex-shrink: 0;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .audio-waveform {
+    display: flex; align-items: center; gap: 3px;
+  }
+
+  .audio-waveform span {
+    display: block; width: 3px;
+    background: white;
+    border-radius: 2px;
+  }
+
+  .audio-info .media-type {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 0.3rem;
+  }
+
+  .audio-info .media-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 500;
+    color: white;
+    line-height: 1.3;
+  }
+
+  .audio-info .media-duration {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 0.2rem;
+  }
+
+
+  /* ─── AUDIO PLAYER NATIVO ─── */
+  .ap-wrap {
+    background: var(--verde);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem 1rem;
+    margin: 2.5rem 0;
+  }
+  .ap-wrap.ap-light {
+    background: var(--creme);
+    border: 1px solid var(--cinza-claro);
+    border-left: 4px solid var(--verde);
+  }
+  .ap-meta {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin-bottom: .9rem;
+  }
+  .ap-icon {
+    width: 42px; height: 42px; flex-shrink: 0;
+    background: rgba(255,255,255,.15);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .ap-wrap.ap-light .ap-icon {
+    background: rgba(45,106,45,.12);
+  }
+  .ap-info .ap-type {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .62rem; font-weight: 700;
+    letter-spacing: .15em; text-transform: uppercase;
+    color: rgba(255,255,255,.6);
+    margin-bottom: .2rem;
+  }
+  .ap-wrap.ap-light .ap-info .ap-type { color: var(--verde); }
+  .ap-info .ap-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .88rem; font-weight: 500;
+    color: white; line-height: 1.3;
+  }
+  .ap-wrap.ap-light .ap-info .ap-title { color: var(--escuro); }
+  .ap-player {
+    width: 100%;
+    height: 36px;
+    accent-color: var(--amarelo-vivo);
+  }
+  .ap-wrap.ap-light .ap-player {
+    accent-color: var(--verde);
+  }
+
+  /* Podcast player nativo */
+  .podcast-placeholder audio {
+    width: 100%;
+    margin-top: .5rem;
+    accent-color: var(--amarelo-vivo);
+  }
+
+  /* ─── VIDEO PLAYER ─── */
+  .vp-wrap{margin:2rem auto}
+  .vp-shell{position:relative;max-width:340px;margin:0 auto;background:#000;border-radius:12px;overflow:hidden;aspect-ratio:9/16}
+  .vp-video{width:100%;height:100%;object-fit:cover;display:block}
+  .vp-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35);transition:opacity .3s;cursor:pointer}
+  .vp-big-play{width:64px;height:64px;border-radius:50%;background:var(--amarelo-vivo);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s}
+  .vp-big-play:hover{transform:scale(1.1)}
+  .vp-big-triangle{width:0;height:0;border-top:14px solid transparent;border-bottom:14px solid transparent;border-left:22px solid #1A1A1A;margin-left:4px}
+  .vp-controls{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.85));padding:1rem .8rem .6rem;transition:opacity .3s}
+  .vp-progress-wrap{margin-bottom:.5rem;position:relative;height:16px;display:flex;align-items:center}
+  .vp-progress-bg{position:absolute;left:0;right:0;height:3px;background:rgba(255,255,255,.25);border-radius:2px;pointer-events:none}
+  .vp-progress-fill{height:100%;background:var(--amarelo-vivo);border-radius:2px;width:0%;pointer-events:none}
+  .vp-seek{position:absolute;left:0;right:0;width:100%;opacity:0;height:16px;cursor:pointer;margin:0}
+  .vp-seek:focus{outline:none}
+  .vp-bottom{display:flex;align-items:center;gap:.5rem}
+  .vp-btn{background:none;border:none;color:#fff;cursor:pointer;padding:2px;display:flex;align-items:center;flex-shrink:0}
+  .vp-btn svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.5;fill:none}
+  .vp-btn svg[fill="currentColor"]{fill:currentColor;stroke:none}
+  .vp-time{font-family:'DM Sans',sans-serif;font-size:.65rem;color:rgba(255,255,255,.7);white-space:nowrap;flex-shrink:0}
+  .vp-vol-wrap{display:flex;align-items:center;gap:.3rem;flex-shrink:0}
+  .vp-vol-slider{width:52px;accent-color:var(--amarelo-vivo);cursor:pointer}
+  .vp-label{font-family:'DM Sans',sans-serif;font-size:.6rem;color:rgba(255,255,255,.4);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase;letter-spacing:.06em;margin-left:auto}
+
+  /* ─── INFOGRÁFICO FULLWIDTH ─── */
+  .ig2-fullwidth-wrap {
+    /* mesmo truque da galeria de fotos: quebra o max-width do container */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background: var(--escuro);
+    margin-top: 5rem;
+    margin-bottom: 0;
+  }
+
+  .ig2-fullwidth-wrap::before {
+    content: '';
+    display: block;
+    height: 4px;
+    background: linear-gradient(90deg, var(--amarelo-vivo), var(--verde), var(--azul-claro));
+  }
+
+  .infog-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    padding: 2.5rem 2rem 0;
+  }
+
+  .infog-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--amarelo-vivo);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .infog-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .infog-header p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+  }
+
+  /* Timeline estática — sem scroll horizontal */
+  .timeline-wrapper {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .timeline-track {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    padding-bottom: 2rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-snap-type: x mandatory;
+  }
+
+  .timeline-track::-webkit-scrollbar { display: none; }
+
+  .era-card {
+    min-width: 260px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    padding: 0 1.5rem;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+  }
+
+  .era-card:last-child { border-right: none; }
+
+  .era-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .era-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1.5rem;
+  }
+
+  /* Pessoas que podiam votar — visualização */
+  .voters-viz {
+    margin-bottom: 1.5rem;
+  }
+
+  .voters-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .voters-bar-bg {
+    background: rgba(255,255,255,0.08);
+    border-radius: 3px;
+    height: 8px;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+  }
+
+  .voters-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s ease;
+  }
+
+  .voters-pct {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .voters-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.4;
+  }
+
+  /* Ícones de quem PODE votar */
+  .who-can-vote {
+    margin-top: 1.5rem;
+  }
+
+  .who-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 0.8rem;
+  }
+
+  .who-tags {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+  }
+
+  .who-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    padding: 3px 8px;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+
+  .who-tag.yes {
+    background: rgba(45,106,45,0.4);
+    color: #7EC87E;
+    border: 1px solid rgba(45,106,45,0.5);
+  }
+
+  .who-tag.no {
+    background: rgba(192,57,43,0.2);
+    color: rgba(255,255,255,0.3);
+    border: 1px solid rgba(192,57,43,0.2);
+    text-decoration: line-through;
+  }
+
+  .timeline-nav {
+    display: flex; justify-content: center; gap: 0.5rem;
+    margin-top: 2rem;
+  }
+
+  .timeline-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .timeline-dot.active { background: var(--amarelo-vivo); }
+
+  .scroll-hint-horiz {
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    margin-top: 1.5rem;
+  }
+
+  /* ─── INFOGRÁFICO ESTÁTICO COM HOVER ─── */
+  .ig2-static-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    width: 100%;
+    padding: 0 1.5rem 2rem;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 900px) {
+    .ig2-static-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 540px) {
+    .ig2-static-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .ig2-era-static {
+    padding: 1.1rem .9rem .9rem;
+    border-radius: 8px;
+    background: rgba(255,255,255,.04);
+    border: .5px solid rgba(255,255,255,.08);
+    cursor: default;
+    transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+    position: relative;
+    filter: grayscale(80%) opacity(0.45);
+  }
+
+  .ig2-era-static:hover {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.05) translateY(-5px);
+    z-index: 10;
+    background: rgba(255,255,255,.07);
+    box-shadow: 0 16px 48px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.18);
+  }
+
+  /* ─── GALERIA (CARROSSEL PLACEHOLDER) ─── */
+  .carrossel-placeholder {
+    background: var(--cinza-claro);
+    border: 2px dashed rgba(0,0,0,0.15);
+    border-radius: 8px;
+    margin: 3rem 0;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .carrossel-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    margin-bottom: 1.5rem;
+  }
+
+  .carrossel-thumb {
+    aspect-ratio: 1;
+    background: var(--cinza);
+    border-radius: 4px;
+    opacity: 0.3;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+
+  .carrossel-thumb:first-child {
+    opacity: 0.7;
+    background: var(--azul);
+  }
+
+  .carrossel-info {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    color: var(--cinza);
+    font-weight: 500;
+  }
+
+  /* ─── ENQUETE PLACEHOLDER ─── */
+  .enquete-placeholder {
+    background: white;
+    border: 1px solid var(--cinza-claro);
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 3rem 0;
+    border-left: 4px solid var(--amarelo-vivo);
+  }
+
+  .enquete-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--amarelo-vivo);
+    margin-bottom: 0.8rem;
+  }
+
+  .enquete-question {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--escuro);
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+  }
+
+  .enquete-options {
+    display: flex; flex-direction: column; gap: 0.6rem;
+  }
+
+  .enquete-option {
+    background: var(--creme);
+    border: 1px solid var(--cinza-claro);
+    border-radius: 4px;
+    padding: 0.7rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--cinza);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+  }
+
+  .enquete-option:hover {
+    border-color: var(--amarelo-vivo);
+    background: rgba(245,197,24,0.08);
+    color: var(--escuro);
+  }
+
+  .enquete-note {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    color: rgba(0,0,0,0.3);
+    margin-top: 1rem;
+    font-style: italic;
+  }
+
+  /* ─── PODCAST PLACEHOLDER ─── */
+  .podcast-placeholder {
+    background: linear-gradient(135deg, var(--azul) 0%, #0D2660 100%);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 3rem 0;
+    display: flex; flex-direction: column; gap: 1.5rem;
+    border: 2px dashed rgba(255,255,255,0.2);
+  }
+
+  .podcast-header {
+    display: flex; align-items: center; gap: 1rem;
+  }
+
+  .podcast-cover {
+    width: 70px; height: 70px; flex-shrink: 0;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  .podcast-meta .media-type {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--amarelo-vivo);
+    margin-bottom: 0.3rem;
+  }
+
+  .podcast-meta .podcast-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    color: white; line-height: 1.3;
+    margin-bottom: 0.3rem;
+  }
+
+  .podcast-meta .podcast-guest {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .podcast-controls {
+    display: flex; align-items: center; gap: 1rem;
+  }
+
+  .podcast-play-btn {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: var(--amarelo-vivo);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+
+  .podcast-play-btn .play-triangle {
+    border-left-color: var(--escuro);
+    border-top-width: 9px;
+    border-bottom-width: 9px;
+    border-left-width: 15px;
+    margin-left: 3px;
+  }
+
+  .podcast-progress {
+    flex: 1;
+  }
+
+  .podcast-waveform {
+    display: flex; align-items: center; gap: 2px;
+    height: 32px; cursor: pointer;
+  }
+
+  .podcast-waveform span {
+    display: block; width: 3px;
+    border-radius: 2px;
+    transition: background 0.3s;
+  }
+
+  .podcast-duration {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    white-space: nowrap;
+  }
+
+  /* ─── RÁDIO PLACEHOLDER ─── */
+  .radio-placeholder {
+    background: var(--creme);
+    border: 1px solid var(--cinza-claro);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    margin: 2rem 0;
+    display: flex; align-items: center; gap: 1rem;
+    border-left: 4px solid var(--verde);
+  }
+
+  .radio-icon {
+    font-size: 1.5rem; flex-shrink: 0;
+  }
+
+  .radio-info .media-type {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--verde);
+    margin-bottom: 0.2rem;
+  }
+
+  .radio-info .radio-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 500;
+    color: var(--escuro);
+    line-height: 1.3;
+  }
+
+  .radio-info .radio-duration {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    color: var(--cinza);
+  }
+
+  /* ─── HIGHLIGHT BOX ─── */
+  .highlight-box {
+    background: linear-gradient(135deg, rgba(27,63,139,0.06), rgba(45,106,45,0.06));
+    border: 1px solid var(--cinza-claro);
+    border-radius: 4px;
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+  }
+
+  .highlight-box p {
+    font-size: 1rem !important;
+    color: var(--cinza) !important;
+    margin: 0 !important;
+    font-style: italic;
+  }
+
+  .highlight-box .highlight-source {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    color: var(--azul);
+    font-style: normal !important;
+    margin-top: 0.5rem !important;
+    font-weight: 600;
+  }
+
+  /* ─── RODAPÉ ─── */
+  footer {
+    background: var(--escuro);
+    color: rgba(255,255,255,0.4);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .footer-logos {
+    display: flex; align-items: center; justify-content: center;
+    gap: 2rem; margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-logo-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 0.8rem 1.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem; font-weight: 700;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.08em;
+  }
+
+  .footer-copy {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    line-height: 1.8;
+  }
+
+  /* ─── SEÇÃO FINAL ─── */
+  .closing-section {
+    background: var(--azul);
+    padding: 5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .closing-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(245,197,24,0.15), transparent 60%);
+  }
+
+  .closing-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: white;
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.2;
+    position: relative;
+  }
+
+  .closing-section h2 em {
+    color: var(--amarelo-vivo);
+    font-style: italic;
+  }
+
+  .closing-section p {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.65);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(4px); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    .pullquote { margin: 3rem -2rem; }
+    .carrossel-grid { grid-template-columns: repeat(3, 1fr); }
+    .era-card { min-width: 220px; }
+    .podcast-waveform span:nth-child(n+20) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- BARRA DE PROGRESSO -->
+<div id="progress-bar"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <span class="nav-logo">Eleições 2026 · #VotoNaDemocracia</span>
+  <span class="nav-tag">Reportagem Especial</span>
+</nav>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- HERO -->
+<!-- ══════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-wave"></div>
+  <p class="hero-eyebrow">Especial Eleições 2026 · História &amp; Democracia</p>
+  <h1>O Voto que o Brasil Levou <em>Séculos</em> para Conquistar</h1>
+  <p class="hero-subtitle">A longa e desigual história da democracia no Brasil — do voto censitário do Império à Constituição Cidadã de 1988.</p>
+  <div class="hero-meta">
+    <span>Por <strong>Equipe de Jornalismo Multimídia</strong></span>
+    <span>Publicado em <strong>Maio de 2026</strong></span>
+    <span>Londrina, PR</span>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-arrow"></div>
+    Role para ler
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- PODCAST — antes do texto principal -->
+<!-- ══════════════════════════════════════════ -->
+<div style="background:var(--escuro);padding:1.5rem 2rem 2rem">
+  <div style="max-width:720px;margin:0 auto">
+    <p style="font-family:'DM Sans',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.8rem">🎙 Ouça antes de ler</p>
+    <div class="podcast-placeholder" style="margin:0;border:none">
+      <div class="podcast-header">
+        <div class="podcast-cover">🎙️</div>
+        <div class="podcast-meta">
+          <p class="media-type">Podcast-Entrevista</p>
+          <p class="podcast-title">Análise Completa: A História do Voto no Brasil</p>
+          <p class="podcast-guest">Com Prof.ª Marilyn Laureano e historiador Nishikawa</p>
+        </div>
+      </div>
+      <audio id="audio-podcast" controls preload="metadata" style="width:100%;height:40px;accent-color:var(--amarelo-vivo);filter:invert(1) sepia(1) saturate(2) hue-rotate(175deg)">
+        <source src="podcast-historia-voto-brasil.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio HTML5.
+      </audio>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- CONTEÚDO PRINCIPAL -->
+<!-- ══════════════════════════════════════════ -->
+<main class="story-container">
+
+  <!-- LEAD -->
+  <div class="lead-block reveal">
+    <p>Imagine ter que declarar em voz alta, na frente de todos, em quem você vai votar, enquanto o fazendeiro da região observa, de braços cruzados, cada nome pronunciado.</p>
+  </div>
+
+  <p class="reveal">Ou então imaginar que só pode participar da escolha dos governantes do país quem tem terras, dinheiro e é homem. Para milhões de brasileiros, essa era a realidade eleitoral que perdurou por décadas, moldando um sistema político marcado pela exclusão, pela fraude e pelo controle das elites.</p>
+
+  <p class="reveal">O Brasil de 2026 vai às urnas em outubro com mais de 150 milhões de eleitores aptos em uma das maiores democracias eleitorais do mundo. Mas chegar até aqui foi um percurso longo, tortuoso e, muitas vezes, sangrentamente injusto. A história do voto no Brasil é a história de um país que demorou quase dois séculos para reconhecer que todos os seus cidadãos tinham o direito de decidir.</p>
+
+  <!-- VÍDEO 1: UM MAIOR ACESSO À INFORMAÇÃO AJUDA NA HORA DE VOTAR? -->
+  <div class="reveal vp-wrap" id="vp-v1">
+    <div class="vp-shell">
+      <video class="vp-video" id="vid-v1" preload="metadata" playsinline>
+        <source src="video1.mov" type="video/mp4">
+        Seu navegador não suporta vídeo HTML5.
+      </video>
+      <div class="vp-overlay" id="vp-overlay-v1">
+        <button class="vp-big-play" id="vp-bigplay-v1" aria-label="Play">
+          <span class="vp-big-triangle"></span>
+        </button>
+      </div>
+      <div class="vp-controls" id="vp-ctrl-v1">
+        <div class="vp-progress-wrap">
+          <div class="vp-progress-bg">
+            <div class="vp-progress-fill" id="vp-prog-v1"></div>
+          </div>
+          <input type="range" class="vp-seek" id="vp-seek-v1" min="0" max="100" step="0.1" value="0" aria-label="Barra de progresso">
+        </div>
+        <div class="vp-bottom">
+          <button class="vp-btn vp-playpause" id="vp-pp-v1" aria-label="Play/Pause">
+            <svg class="vp-icon-play" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+            <svg class="vp-icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="3" width="4" height="18"/><rect x="14" y="3" width="4" height="18"/></svg>
+          </button>
+          <span class="vp-time" id="vp-time-v1">0:00 / 0:00</span>
+          <div class="vp-vol-wrap">
+            <button class="vp-btn vp-mute" id="vp-mute-v1" aria-label="Mute">
+              <svg class="vp-icon-vol" viewBox="0 0 24 24" fill="currentColor"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54,8.46a5,5,0,0,1,0,7.07"/><path d="M19.07,4.93a10,10,0,0,1,0,14.14"/></svg>
+              <svg class="vp-icon-muted" viewBox="0 0 24 24" fill="currentColor" style="display:none"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            </button>
+            <input type="range" class="vp-vol-slider" id="vp-vol-v1" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+          </div>
+          <span class="vp-label">UM MAIOR ACESSO À INFORMAÇÃO A</span>
+        </div>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var vid   = document.getElementById('vid-v1');
+      var pp    = document.getElementById('vp-pp-v1');
+      var seek  = document.getElementById('vp-seek-v1');
+      var prog  = document.getElementById('vp-prog-v1');
+      var tspan = document.getElementById('vp-time-v1');
+      var mute  = document.getElementById('vp-mute-v1');
+      var vol   = document.getElementById('vp-vol-v1');
+      var over  = document.getElementById('vp-overlay-v1');
+      var bigp  = document.getElementById('vp-bigplay-v1');
+      var ctrl  = document.getElementById('vp-ctrl-v1');
+      if(!vid) return;
+
+      function fmt(s){var m=Math.floor(s/60);var ss=Math.floor(s%60);return m+':'+(ss<10?'0':'')+ss;}
+      function updateUI(){
+        var pct=vid.duration?((vid.currentTime/vid.duration)*100):0;
+        prog.style.width=pct+'%';
+        seek.value=pct;
+        tspan.textContent=fmt(vid.currentTime)+' / '+fmt(vid.duration||0);
+        var pi=pp.querySelector('.vp-icon-play'), pa=pp.querySelector('.vp-icon-pause');
+        if(vid.paused){pi.style.display='';pa.style.display='none';}
+        else{pi.style.display='none';pa.style.display='';}
+        over.style.opacity=vid.paused?'1':'0';
+      }
+      function togglePlay(){if(vid.paused){vid.play();}else{vid.pause();}}
+      pp.addEventListener('click',togglePlay);
+      bigp.addEventListener('click',togglePlay);
+      vid.addEventListener('timeupdate',updateUI);
+      vid.addEventListener('loadedmetadata',updateUI);
+      vid.addEventListener('ended',function(){over.style.opacity='1';});
+      seek.addEventListener('input',function(){if(vid.duration)vid.currentTime=(seek.value/100)*vid.duration;});
+      mute.addEventListener('click',function(){
+        vid.muted=!vid.muted;
+        mute.querySelector('.vp-icon-vol').style.display=vid.muted?'none':'';
+        mute.querySelector('.vp-icon-muted').style.display=vid.muted?'':'none';
+      });
+      vol.addEventListener('input',function(){vid.volume=parseFloat(vol.value);if(vid.muted&&vid.volume>0){vid.muted=false;mute.querySelector('.vp-icon-vol').style.display='';mute.querySelector('.vp-icon-muted').style.display='none';}});
+      // hide controls on pause overlay
+      vid.addEventListener('play',function(){setTimeout(function(){ctrl.style.opacity='1';},100);});
+    })();
+    </script>
+  </div>
+
+
+  <p class="reveal">Nesta reportagem especial, produzida para as Eleições de 2026, historiadores reconstroem esse caminho — do voto censitário do Império ao voto secreto da República, das fraudes da Primeira República à Constituição Cidadã de 1988. E também refletem sobre um desafio tão antigo quanto novo: o da manipulação do eleitor.</p>
+
+
+
+
+
+<!-- ══════════════════════════════════════════ -->
+<!-- INFOGRÁFICO: QUEM PODIA VOTAR? – XILOGRAVURA -->
+<!-- ══════════════════════════════════════════ -->
+<div id="infografico" class="ig2-fullwidth-wrap reveal">
+  <div class="infog-header">
+    <span class="infog-tag">📊 Infográfico · Visualização de Dados · TSE / IBGE / TRE-PR</span>
+    <h2>Quem Podia Votar no Brasil?</h2>
+    <p>Em cada era da história brasileira, uma fatia diferente da população tinha acesso às urnas. Passe o mouse sobre cada período para descobrir como a democracia se expandiu — e quem ficou de fora.</p>
+  </div>
+
+  <div class="ig2-static-grid">
+
+      <!-- 1824 -->
+      <div class="ig2-era-static" data-color="#C0392B">
+        <div class="ig2-year" style="color:#C0392B">1824</div>
+        <div class="ig2-name">Constituição do Império</div>
+        <div class="ig2-pct" style="color:#C0392B">~2%</div>
+        <div class="ig2-bar-bg"><div class="ig2-bar-fill" style="width:2%;background:#C0392B"></div></div>
+        <div class="ig2-desc">Apenas homens livres com renda comprovada. Escravizados, mulheres e pobres excluídos.</div>
+        <div class="ig2-who-label">Quem votava</div>
+        <div class="ig2-tags">
+          <span class="ig2-tag yes">Homens proprietários</span>
+          <span class="ig2-tag no">Mulheres</span>
+          <span class="ig2-tag no">Escravizados</span>
+          <span class="ig2-tag no">Pobres</span>
+          <span class="ig2-tag no">Analfabetos</span>
+        </div>
+      </div>
+
+      <!-- 1891 -->
+      <div class="ig2-era-static" data-color="#E67E22">
+        <div class="ig2-year" style="color:#E67E22">1891</div>
+        <div class="ig2-name">República Velha</div>
+        <div class="ig2-pct" style="color:#E67E22">~5%</div>
+        <div class="ig2-bar-bg"><div class="ig2-bar-fill" style="width:5%;background:#E67E22"></div></div>
+        <div class="ig2-desc">Voto aberto e manipulado. Coronelismo e voto de cabresto consolidados.</div>
+        <div class="ig2-who-label">Quem votava</div>
+        <div class="ig2-tags">
+          <span class="ig2-tag yes">Homens alfabetizados</span>
+          <span class="ig2-tag no">Mulheres</span>
+          <span class="ig2-tag no">Analfabetos</span>
+          <span class="ig2-tag no">Escravizados</span>
+        </div>
+      </div>
+
+      <!-- 1932 -->
+      <div class="ig2-era-static" data-color="#C9A800">
+        <div class="ig2-year" style="color:#C9A800">1932</div>
+        <div class="ig2-name">Era Vargas</div>
+        <div class="ig2-pct" style="color:#C9A800">~16%</div>
+        <div class="ig2-bar-bg"><div class="ig2-bar-fill" style="width:16%;background:#C9A800"></div></div>
+        <div class="ig2-desc">Voto secreto + voto feminino (só alfabetizadas). Criação da Justiça Eleitoral.</div>
+        <div class="ig2-who-label">Quem votava</div>
+        <div class="ig2-tags">
+          <span class="ig2-tag yes">Homens alfabetizados</span>
+          <span class="ig2-tag yes">Mulheres alfabetizadas</span>
+          <span class="ig2-tag no">Analfabetos</span>
+          <span class="ig2-tag no">Soldados</span>
+        </div>
+      </div>
+
+      <!-- 1945 -->
+      <div class="ig2-era-static" data-color="#4A90D9">
+        <div class="ig2-year" style="color:#4A90D9">1945</div>
+        <div class="ig2-name">Redemocratização</div>
+        <div class="ig2-pct" style="color:#4A90D9">~28%</div>
+        <div class="ig2-bar-bg"><div class="ig2-bar-fill" style="width:28%;background:#4A90D9"></div></div>
+        <div class="ig2-desc">Eleições diretas restauradas. Analfabetos (~60% da população) ainda excluídos.</div>
+        <div class="ig2-who-label">Quem votava</div>
+        <div class="ig2-tags">
+          <span class="ig2-tag yes">Homens alfabetizados</span>
+          <span class="ig2-tag yes">Mulheres alfabetizadas</span>
+          <span class="ig2-tag no">Analfabetos</span>
+        </div>
+      </div>
+
+      <!-- 1988 -->
+      <div class="ig2-era-static" data-color="#2D6A2D">
+        <div class="ig2-year" style="color:#2D6A2D">1988</div>
+        <div class="ig2-name">Constituição Cidadã</div>
+        <div class="ig2-pct" style="color:#2D6A2D">100%</div>
+        <div class="ig2-bar-bg"><div class="ig2-bar-fill" style="width:100%;background:linear-gradient(90deg,#2D6A2D,#4A90D9)"></div></div>
+        <div class="ig2-desc">Voto universal. Analfabetos incluídos. Jovens de 16 anos (facultativo). Urna eletrônica em 1996.</div>
+        <div class="ig2-who-label">Quem vota</div>
+        <div class="ig2-tags">
+          <span class="ig2-tag yes">Todos os cidadãos</span>
+          <span class="ig2-tag yes">Analfabetos</span>
+          <span class="ig2-tag yes">Jovens 16+</span>
+          <span class="ig2-tag yes">Pessoas com deficiência</span>
+        </div>
+      </div>
+
+      <!-- 2026 -->
+      <div class="ig2-era-static" data-color="#4A90D9">
+        <div class="ig2-year" style="color:#4A90D9">2026</div>
+        <div class="ig2-name">O Desafio Atual</div>
+        <div class="ig2-pct" style="color:#4A90D9">+150M</div>
+        <div class="ig2-bar-bg"><div class="ig2-bar-fill" style="width:100%;background:linear-gradient(90deg,#1B3F8B,#4A90D9)"></div></div>
+        <div class="ig2-desc">O problema não é o acesso às urnas — é o acesso à informação qualificada para votar conscientemente.</div>
+        <div class="ig2-who-label">Novo desafio</div>
+        <div class="ig2-tags">
+          <span class="ig2-tag yes">Urna eletrônica</span>
+          <span class="ig2-tag yes">Voto seguro</span>
+          <span class="ig2-tag no">Fake news</span>
+          <span class="ig2-tag no">Bolhas digitais</span>
+        </div>
+      </div>
+
+  </div><!-- fim static grid -->
+</div><!-- fim ig2-fullwidth-wrap -->
+
+<style>
+.ig2-year{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;line-height:1;margin-bottom:.2rem}
+.ig2-name{font-family:'DM Sans',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1rem}
+.ig2-pct{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin-bottom:.3rem}
+.ig2-bar-bg{background:rgba(255,255,255,.08);border-radius:3px;height:5px;margin-bottom:.8rem;overflow:hidden}
+.ig2-bar-fill{height:100%;border-radius:3px}
+.ig2-desc{font-family:'DM Sans',sans-serif;font-size:.72rem;color:rgba(255,255,255,.4);line-height:1.5;margin-bottom:.8rem}
+.ig2-who-label{font-family:'DM Sans',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.5rem}
+.ig2-tags{display:flex;flex-wrap:wrap;gap:.3rem}
+.ig2-tag{font-family:'DM Sans',sans-serif;font-size:.68rem;padding:2px 7px;border-radius:2px;font-weight:500}
+.ig2-tag.yes{background:rgba(45,106,45,.5);color:#7EC87E;border:.5px solid rgba(45,106,45,.6)}
+.ig2-tag.no{background:rgba(255,255,255,.04);color:rgba(255,255,255,.25);border:.5px solid rgba(255,255,255,.08);text-decoration:line-through}
+</style>
+
+
+  <!-- SEÇÃO: IMPÉRIO -->
+  <div class="section-marker reveal">
+    <h2>O Império e o Voto dos Poucos</h2>
+  </div>
+
+  <p class="reveal">Quando o Brasil se tornou independente, em 1822, e Dom Pedro I impôs a primeira Constituição brasileira, em 1824, o que se criou não era exatamente uma democracia, ao menos não no sentido que conhecemos hoje. A Constituição do Império estabeleceu o chamado voto censitário, com o significado de que apenas podia votar quem tivesse renda mínima comprovada — o que na prática restringia o eleitorado a uma minúscula parcela da população: os grandes proprietários de terras.</p>
+
+  <p class="reveal">Mais do que isso, Dom Pedro I criou o Poder Moderador, um quarto poder, acima dos demais, que concentrava nas mãos do imperador a palavra final sobre qualquer decisão política do país. Era uma arquitetura institucional desenhada para manter o poder onde ele sempre esteve: nas mãos de poucos.</p>
+
+  <div class="highlight-box reveal">
+    <p>Escravizados, mulheres, pobres, analfabetos — a maioria da população brasileira sequer era considerada cidadã para fins eleitorais. O voto existia no papel, mas como instrumento de legitimação de uma elite, não de expressão popular.</p>
+  </div>
+
+  <!-- ÁUDIO 1 -->
+  <div class="ap-wrap reveal">
+    <div class="ap-meta">
+      <div class="ap-icon">🎤</div>
+      <div class="ap-info">
+        <p class="ap-type">Áudio · Trecho de Entrevista</p>
+        <p class="ap-title">Prof.ª Marilyn Beloni Laureano sobre o voto censitário e a exclusão dos escravizados</p>
+      </div>
+    </div>
+    <audio class="ap-player" controls preload="metadata">
+      <source src="audio1-marilyn-voto-censitario.mp3" type="audio/mpeg">
+      Seu navegador não suporta áudio HTML5.
+    </audio>
+  </div>
+
+  <!-- SEÇÃO: REPÚBLICA VELHA -->
+  <div class="section-marker reveal">
+    <h2>República Velha: a Troca de Jaula</h2>
+  </div>
+
+  <p class="reveal">Com a Proclamação da República, em 1889, esperava-se uma abertura. O que se viu, no entanto, foi a substituição de um modelo excludente por outro. O período conhecido como República Velha (1889–1930) ficou marcado pela política do "café com leite" — o revezamento de poder entre as oligarquias de São Paulo e Minas Gerais — juntamente com a prática do voto de cabresto, em que eleitores pobres eram literalmente coagidos por coronéis a votar em candidatos previamente definidos.</p>
+
+  <p class="reveal">O voto era aberto. O eleitor precisava declarar sua escolha em voz alta, diante de todos. As listas de votação eram manipuladas — chegavam a incluir nomes de pessoas já falecidas como votantes. As eleições existiam, mas seu resultado já estava, em grande parte, escrito antes mesmo de começarem.</p>
+
+  <!-- VÍDEO 3: AS PESSOAS SABEM O QUE ERA O VOTO DE CABRESTO? -->
+  <div class="reveal vp-wrap" id="vp-v3">
+    <div class="vp-shell">
+      <video class="vp-video" id="vid-v3" preload="metadata" playsinline>
+        <source src="video3.mov" type="video/mp4">
+        Seu navegador não suporta vídeo HTML5.
+      </video>
+      <div class="vp-overlay" id="vp-overlay-v3">
+        <button class="vp-big-play" id="vp-bigplay-v3" aria-label="Play">
+          <span class="vp-big-triangle"></span>
+        </button>
+      </div>
+      <div class="vp-controls" id="vp-ctrl-v3">
+        <div class="vp-progress-wrap">
+          <div class="vp-progress-bg">
+            <div class="vp-progress-fill" id="vp-prog-v3"></div>
+          </div>
+          <input type="range" class="vp-seek" id="vp-seek-v3" min="0" max="100" step="0.1" value="0" aria-label="Barra de progresso">
+        </div>
+        <div class="vp-bottom">
+          <button class="vp-btn vp-playpause" id="vp-pp-v3" aria-label="Play/Pause">
+            <svg class="vp-icon-play" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+            <svg class="vp-icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="3" width="4" height="18"/><rect x="14" y="3" width="4" height="18"/></svg>
+          </button>
+          <span class="vp-time" id="vp-time-v3">0:00 / 0:00</span>
+          <div class="vp-vol-wrap">
+            <button class="vp-btn vp-mute" id="vp-mute-v3" aria-label="Mute">
+              <svg class="vp-icon-vol" viewBox="0 0 24 24" fill="currentColor"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54,8.46a5,5,0,0,1,0,7.07"/><path d="M19.07,4.93a10,10,0,0,1,0,14.14"/></svg>
+              <svg class="vp-icon-muted" viewBox="0 0 24 24" fill="currentColor" style="display:none"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            </button>
+            <input type="range" class="vp-vol-slider" id="vp-vol-v3" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+          </div>
+          <span class="vp-label">AS PESSOAS SABEM O QUE ERA O V</span>
+        </div>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var vid   = document.getElementById('vid-v3');
+      var pp    = document.getElementById('vp-pp-v3');
+      var seek  = document.getElementById('vp-seek-v3');
+      var prog  = document.getElementById('vp-prog-v3');
+      var tspan = document.getElementById('vp-time-v3');
+      var mute  = document.getElementById('vp-mute-v3');
+      var vol   = document.getElementById('vp-vol-v3');
+      var over  = document.getElementById('vp-overlay-v3');
+      var bigp  = document.getElementById('vp-bigplay-v3');
+      var ctrl  = document.getElementById('vp-ctrl-v3');
+      if(!vid) return;
+
+      function fmt(s){var m=Math.floor(s/60);var ss=Math.floor(s%60);return m+':'+(ss<10?'0':'')+ss;}
+      function updateUI(){
+        var pct=vid.duration?((vid.currentTime/vid.duration)*100):0;
+        prog.style.width=pct+'%';
+        seek.value=pct;
+        tspan.textContent=fmt(vid.currentTime)+' / '+fmt(vid.duration||0);
+        var pi=pp.querySelector('.vp-icon-play'), pa=pp.querySelector('.vp-icon-pause');
+        if(vid.paused){pi.style.display='';pa.style.display='none';}
+        else{pi.style.display='none';pa.style.display='';}
+        over.style.opacity=vid.paused?'1':'0';
+      }
+      function togglePlay(){if(vid.paused){vid.play();}else{vid.pause();}}
+      pp.addEventListener('click',togglePlay);
+      bigp.addEventListener('click',togglePlay);
+      vid.addEventListener('timeupdate',updateUI);
+      vid.addEventListener('loadedmetadata',updateUI);
+      vid.addEventListener('ended',function(){over.style.opacity='1';});
+      seek.addEventListener('input',function(){if(vid.duration)vid.currentTime=(seek.value/100)*vid.duration;});
+      mute.addEventListener('click',function(){
+        vid.muted=!vid.muted;
+        mute.querySelector('.vp-icon-vol').style.display=vid.muted?'none':'';
+        mute.querySelector('.vp-icon-muted').style.display=vid.muted?'':'none';
+      });
+      vol.addEventListener('input',function(){vid.volume=parseFloat(vol.value);if(vid.muted&&vid.volume>0){vid.muted=false;mute.querySelector('.vp-icon-vol').style.display='';mute.querySelector('.vp-icon-muted').style.display='none';}});
+      // hide controls on pause overlay
+      vid.addEventListener('play',function(){setTimeout(function(){ctrl.style.opacity='1';},100);});
+    })();
+    </script>
+  </div>
+
+
+  <!-- ÁUDIO 2 -->
+  <div class="ap-wrap reveal">
+    <div class="ap-meta">
+      <div class="ap-icon">🎤</div>
+      <div class="ap-info">
+        <p class="ap-type">Áudio · Trecho de Entrevista</p>
+        <p class="ap-title">Nishikawa sobre a falsa liberdade de escolha eleitoral</p>
+      </div>
+    </div>
+    <audio class="ap-player" controls preload="metadata">
+      <source src="audio2-nishikawa-falsa-liberdade.mp3" type="audio/mpeg">
+      Seu navegador não suporta áudio HTML5.
+    </audio>
+  </div>
+
+  <div class="pullquote reveal">
+    <p>"A gente tem que conhecer política, e não políticos. Políticos vêm e vão, mas se entendermos a política como funciona, a população não cairá nas armadilhas que acontecem hoje."</p>
+    <cite>Nishikawa — historiador, IFPR</cite>
+  </div>
+
+  <p class="reveal">O voto de cabresto é talvez o símbolo mais brutal da exclusão política brasileira. A expressão vem da imagem do animal preso pelo cabresto, uma corda que o impede de andar livremente. Da mesma forma, o eleitor pobre, dependente econômica e socialmente do coronel local, não tinha liberdade real para votar em quem quisesse.</p>
+
+  <p class="reveal">Esse sistema não apenas distorcia os resultados eleitorais, como perpetuava a concentração de poder nas mãos de uma elite que não precisava — e além do mais não queria — que o povo tivesse consciência política. A ignorância era um ativo estratégico para quem mandava.</p>
+
+  </div>
+
+
+  <!-- SEÇÃO: VARGAS -->
+  <div class="section-marker reveal">
+    <h2>Vargas e os Avanços Contraditórios</h2>
+  </div>
+
+  <!-- VÍDEO 4: VOCÊ SABIA QUE O VOTO NO BRASIL NEM SEMPRE FOI SECRETO E ACESSÍVEL? -->
+  <div class="reveal vp-wrap" id="vp-v4">
+    <div class="vp-shell">
+      <video class="vp-video" id="vid-v4" preload="metadata" playsinline>
+        <source src="video4.mov" type="video/mp4">
+        Seu navegador não suporta vídeo HTML5.
+      </video>
+      <div class="vp-overlay" id="vp-overlay-v4">
+        <button class="vp-big-play" id="vp-bigplay-v4" aria-label="Play">
+          <span class="vp-big-triangle"></span>
+        </button>
+      </div>
+      <div class="vp-controls" id="vp-ctrl-v4">
+        <div class="vp-progress-wrap">
+          <div class="vp-progress-bg">
+            <div class="vp-progress-fill" id="vp-prog-v4"></div>
+          </div>
+          <input type="range" class="vp-seek" id="vp-seek-v4" min="0" max="100" step="0.1" value="0" aria-label="Barra de progresso">
+        </div>
+        <div class="vp-bottom">
+          <button class="vp-btn vp-playpause" id="vp-pp-v4" aria-label="Play/Pause">
+            <svg class="vp-icon-play" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+            <svg class="vp-icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="3" width="4" height="18"/><rect x="14" y="3" width="4" height="18"/></svg>
+          </button>
+          <span class="vp-time" id="vp-time-v4">0:00 / 0:00</span>
+          <div class="vp-vol-wrap">
+            <button class="vp-btn vp-mute" id="vp-mute-v4" aria-label="Mute">
+              <svg class="vp-icon-vol" viewBox="0 0 24 24" fill="currentColor"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54,8.46a5,5,0,0,1,0,7.07"/><path d="M19.07,4.93a10,10,0,0,1,0,14.14"/></svg>
+              <svg class="vp-icon-muted" viewBox="0 0 24 24" fill="currentColor" style="display:none"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            </button>
+            <input type="range" class="vp-vol-slider" id="vp-vol-v4" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+          </div>
+          <span class="vp-label">VOCÊ SABIA QUE O VOTO NO BRASI</span>
+        </div>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var vid   = document.getElementById('vid-v4');
+      var pp    = document.getElementById('vp-pp-v4');
+      var seek  = document.getElementById('vp-seek-v4');
+      var prog  = document.getElementById('vp-prog-v4');
+      var tspan = document.getElementById('vp-time-v4');
+      var mute  = document.getElementById('vp-mute-v4');
+      var vol   = document.getElementById('vp-vol-v4');
+      var over  = document.getElementById('vp-overlay-v4');
+      var bigp  = document.getElementById('vp-bigplay-v4');
+      var ctrl  = document.getElementById('vp-ctrl-v4');
+      if(!vid) return;
+
+      function fmt(s){var m=Math.floor(s/60);var ss=Math.floor(s%60);return m+':'+(ss<10?'0':'')+ss;}
+      function updateUI(){
+        var pct=vid.duration?((vid.currentTime/vid.duration)*100):0;
+        prog.style.width=pct+'%';
+        seek.value=pct;
+        tspan.textContent=fmt(vid.currentTime)+' / '+fmt(vid.duration||0);
+        var pi=pp.querySelector('.vp-icon-play'), pa=pp.querySelector('.vp-icon-pause');
+        if(vid.paused){pi.style.display='';pa.style.display='none';}
+        else{pi.style.display='none';pa.style.display='';}
+        over.style.opacity=vid.paused?'1':'0';
+      }
+      function togglePlay(){if(vid.paused){vid.play();}else{vid.pause();}}
+      pp.addEventListener('click',togglePlay);
+      bigp.addEventListener('click',togglePlay);
+      vid.addEventListener('timeupdate',updateUI);
+      vid.addEventListener('loadedmetadata',updateUI);
+      vid.addEventListener('ended',function(){over.style.opacity='1';});
+      seek.addEventListener('input',function(){if(vid.duration)vid.currentTime=(seek.value/100)*vid.duration;});
+      mute.addEventListener('click',function(){
+        vid.muted=!vid.muted;
+        mute.querySelector('.vp-icon-vol').style.display=vid.muted?'none':'';
+        mute.querySelector('.vp-icon-muted').style.display=vid.muted?'':'none';
+      });
+      vol.addEventListener('input',function(){vid.volume=parseFloat(vol.value);if(vid.muted&&vid.volume>0){vid.muted=false;mute.querySelector('.vp-icon-vol').style.display='';mute.querySelector('.vp-icon-muted').style.display='none';}});
+      // hide controls on pause overlay
+      vid.addEventListener('play',function(){setTimeout(function(){ctrl.style.opacity='1';},100);});
+    })();
+    </script>
+  </div>
+
+
+  <p class="reveal">O ano de 1930 marca uma virada importante na história eleitoral brasileira. Com a ascensão de Getúlio Vargas ao poder, uma série de mudanças foram implementadas no sistema eleitoral. Algumas genuinamente progressistas, outras parte de uma estratégia de consolidação de poder pessoal.</p>
+
+  <p class="reveal">Foi no governo Vargas que se instituiu o voto secreto. A partir de então, o eleitor não precisaria mais declarar publicamente sua escolha. A cédula secreta tornava mais difícil a coerção direta do coronelismo, embora a manipulação eleitoral encontrasse outros caminhos.</p>
+
+  <p class="reveal">Foi também sob Vargas que as mulheres conquistaram o direito ao voto, em 1932, ainda que de forma parcial. O historiador Nishikawa lembra que o acesso das mulheres ao voto também tinha limitações: eram excluídas as analfabetas, o que representava, na prática, a maioria das mulheres pobres do país. "Você cria um voto para uma mulher que sabia ler e escrever, determinando uma elite", afirma o historiador.</p>
+
+  <!-- ÁUDIO 3 -->
+  <div class="ap-wrap reveal">
+    <div class="ap-meta">
+      <div class="ap-icon">🎤</div>
+      <div class="ap-info">
+        <p class="ap-type">Áudio · Trecho de Entrevista</p>
+        <p class="ap-title">Prof.ª Marilyn sobre o voto feminino como manobra política de Vargas</p>
+      </div>
+    </div>
+    <audio class="ap-player" controls preload="metadata">
+      <source src="audio3-marilyn-voto-feminino.mp3" type="audio/mpeg">
+      Seu navegador não suporta áudio HTML5.
+    </audio>
+  </div>
+
+  <!-- ÁUDIO 4 -->
+  <div class="ap-wrap reveal">
+    <div class="ap-meta">
+      <div class="ap-icon">🎤</div>
+      <div class="ap-info">
+        <p class="ap-type">Áudio · Trecho de Entrevista</p>
+        <p class="ap-title">Nishikawa sobre a Justiça Eleitoral e o voto secreto</p>
+      </div>
+    </div>
+    <audio class="ap-player" controls preload="metadata">
+      <source src="audio4-nishikawa-justica-eleitoral.mp3" type="audio/mpeg">
+      Seu navegador não suporta áudio HTML5.
+    </audio>
+  </div>
+
+  <!-- SEÇÃO: CONSTITUIÇÃO 1988 -->
+  <div class="section-marker reveal">
+    <h2>1988: A Constituição Cidadã</h2>
+  </div>
+
+  <p class="reveal">O maior salto democrático da história brasileira veio com a Constituição Federal de 1988, chamada de Constituição Cidadã. Foi a primeira a garantir o voto a todos os brasileiros, sejam homens e mulheres, ricos e pobres, alfabetizados e analfabetos — sem distinção de raça, religião ou classe social. Pela primeira vez, a palavra "povo" aparecia como sujeito de direitos, não apenas de obrigações.</p>
+
+  <div class="highlight-box reveal">
+    <p>"Nas constituições até 88, tivemos mais de 11 constituições pós república e a palavra povo não aparece nenhuma vez. A ideia de direitos populares só acontece de fato em 88."</p>
+    <p class="highlight-source">— Nishikawa, historiador — IFPR</p>
+  </div>
+
+  <p class="reveal">Outra conquista que merece destaque é a modernização do sistema eleitoral com a introdução da urna eletrônica, na década de 1990. O Brasil tornou-se referência mundial em votação eletrônica, com resultados confiáveis, rápidos e acessíveis, incluindo fotos dos candidatos para eleitores com dificuldade de leitura.</p>
+
+  <!-- CARROSSEL FULLWIDTH -->
+</div><!-- fecha story-container -->
+<div class="fw-wrap reveal">
+  <div class="fw-label">📷 Carrossel de Fotos · Documental / Narrativo · 10–15 imagens com legendas expandidas</div>
+  <div class="fw-track" id="fw-track">
+    <div class="fw-slide"><div class="fw-img p1"></div><div class="fw-cap"><strong>Foto 01</strong> — [ Inserir imagem e legenda expandida com contexto local ]</div></div>
+    <div class="fw-slide"><div class="fw-img p2"></div><div class="fw-cap"><strong>Foto 02</strong> — [ Inserir imagem e legenda expandida com contexto local ]</div></div>
+    <div class="fw-slide"><div class="fw-img p3"></div><div class="fw-cap"><strong>Foto 03</strong> — [ Inserir imagem e legenda expandida com contexto local ]</div></div>
+    <div class="fw-slide"><div class="fw-img p4"></div><div class="fw-cap"><strong>Foto 04</strong> — [ Inserir imagem e legenda expandida com contexto local ]</div></div>
+    <div class="fw-slide"><div class="fw-img p5"></div><div class="fw-cap"><strong>Foto 05</strong> — [ Inserir imagem e legenda expandida com contexto local ]</div></div>
+    <div class="fw-slide"><div class="fw-img p6"></div><div class="fw-cap"><strong>Foto 06</strong> — [ Inserir imagem e legenda expandida com contexto local ]</div></div>
+    <div class="fw-slide"><div class="fw-img p7"></div><div class="fw-cap"><strong>Foto 07</strong> — [ Inserir imagem e legenda expandida com contexto local ]</div></div>
+  </div>
+  <div class="fw-bottom">
+    <div class="fw-dots" id="fw-dots"></div>
+    <div class="fw-hint">← role com o mouse para navegar →</div>
+  </div>
+</div>
+<style>
+.fw-wrap{width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:#111;overflow:hidden;margin-top:3rem;margin-bottom:0}
+.fw-label{font-family:'DM Sans',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:1.2rem 2.5rem .8rem}
+.fw-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none}
+.fw-track::-webkit-scrollbar{display:none}
+.fw-slide{min-width:100vw;flex:0 0 100vw;scroll-snap-align:start;position:relative}
+.fw-img{width:100%;height:70vh;min-height:380px;background:#222;display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(255,255,255,.1)}
+.fw-img.p1{background:linear-gradient(135deg,#1B3F8B 0%,#0D2040 100%)}
+.fw-img.p2{background:linear-gradient(135deg,#2D6A2D 0%,#173817 100%)}
+.fw-img.p3{background:linear-gradient(135deg,#5A1010 0%,#C0392B 100%)}
+.fw-img.p4{background:linear-gradient(135deg,#2C2C2C 0%,#555 100%)}
+.fw-img.p5{background:linear-gradient(135deg,#1B3F8B 0%,#4A90D9 100%)}
+.fw-img.p6{background:linear-gradient(135deg,#2D6A2D 0%,#F5C518 100%)}
+.fw-img.p7{background:linear-gradient(135deg,#0D0D0D 0%,#2C2C2C 100%)}
+.fw-img::after{content:"[ inserir foto ]";font-family:'DM Sans',sans-serif;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.2)}
+.fw-cap{padding:1rem 2.5rem 1.2rem;font-family:'DM Sans',sans-serif;font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.5;border-top:.5px solid rgba(255,255,255,.08)}
+.fw-cap strong{color:rgba(255,255,255,.8);font-weight:600}
+.fw-bottom{display:flex;align-items:center;justify-content:center;gap:1.5rem;padding:.8rem 2.5rem 1.5rem;border-top:.5px solid rgba(255,255,255,.06)}
+.fw-dots{display:flex;gap:.4rem}
+.fw-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.18);cursor:pointer;border:none;padding:0;transition:background .3s,transform .3s}
+.fw-dot.active{background:#F0B429;transform:scale(1.4)}
+.fw-hint{font-family:'DM Sans',sans-serif;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2)}
+</style>
+<script>
+(function(){
+  var t=document.getElementById('fw-track');
+  var d=document.getElementById('fw-dots');
+  var slides=t.querySelectorAll('.fw-slide');
+  slides.forEach(function(_,i){
+    var dot=document.createElement('button');
+    dot.className='fw-dot'+(i===0?' active':'');
+    dot.addEventListener('click',function(){t.scrollTo({left:t.offsetWidth*i,behavior:'smooth'});});
+    d.appendChild(dot);
+  });
+  function upd(){
+    var idx=Math.min(Math.round(t.scrollLeft/t.offsetWidth),slides.length-1);
+    d.querySelectorAll('.fw-dot').forEach(function(dot,i){dot.classList.toggle('active',i===idx);});
+  }
+  t.addEventListener('scroll',upd,{passive:true});
+  document.addEventListener('wheel',function(e){
+    var r=t.getBoundingClientRect();
+    if(e.clientY>=r.top&&e.clientY<=r.bottom){
+      var delta=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;
+      if(Math.abs(delta)>2){e.preventDefault();t.scrollLeft+=delta;}
+    }
+  },{passive:false});
+})();
+</script>
+
+  <!-- VÍDEO 5: NA HORA DE VOTAR, O QUE PESA MAIS? -->
+  <div class="reveal vp-wrap" id="vp-v5">
+    <div class="vp-shell">
+      <video class="vp-video" id="vid-v5" preload="metadata" playsinline>
+        <source src="video5.mov" type="video/mp4">
+        Seu navegador não suporta vídeo HTML5.
+      </video>
+      <div class="vp-overlay" id="vp-overlay-v5">
+        <button class="vp-big-play" id="vp-bigplay-v5" aria-label="Play">
+          <span class="vp-big-triangle"></span>
+        </button>
+      </div>
+      <div class="vp-controls" id="vp-ctrl-v5">
+        <div class="vp-progress-wrap">
+          <div class="vp-progress-bg">
+            <div class="vp-progress-fill" id="vp-prog-v5"></div>
+          </div>
+          <input type="range" class="vp-seek" id="vp-seek-v5" min="0" max="100" step="0.1" value="0" aria-label="Barra de progresso">
+        </div>
+        <div class="vp-bottom">
+          <button class="vp-btn vp-playpause" id="vp-pp-v5" aria-label="Play/Pause">
+            <svg class="vp-icon-play" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+            <svg class="vp-icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="3" width="4" height="18"/><rect x="14" y="3" width="4" height="18"/></svg>
+          </button>
+          <span class="vp-time" id="vp-time-v5">0:00 / 0:00</span>
+          <div class="vp-vol-wrap">
+            <button class="vp-btn vp-mute" id="vp-mute-v5" aria-label="Mute">
+              <svg class="vp-icon-vol" viewBox="0 0 24 24" fill="currentColor"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54,8.46a5,5,0,0,1,0,7.07"/><path d="M19.07,4.93a10,10,0,0,1,0,14.14"/></svg>
+              <svg class="vp-icon-muted" viewBox="0 0 24 24" fill="currentColor" style="display:none"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            </button>
+            <input type="range" class="vp-vol-slider" id="vp-vol-v5" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+          </div>
+          <span class="vp-label">NA HORA DE VOTAR, O QUE PESA M</span>
+        </div>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var vid   = document.getElementById('vid-v5');
+      var pp    = document.getElementById('vp-pp-v5');
+      var seek  = document.getElementById('vp-seek-v5');
+      var prog  = document.getElementById('vp-prog-v5');
+      var tspan = document.getElementById('vp-time-v5');
+      var mute  = document.getElementById('vp-mute-v5');
+      var vol   = document.getElementById('vp-vol-v5');
+      var over  = document.getElementById('vp-overlay-v5');
+      var bigp  = document.getElementById('vp-bigplay-v5');
+      var ctrl  = document.getElementById('vp-ctrl-v5');
+      if(!vid) return;
+
+      function fmt(s){var m=Math.floor(s/60);var ss=Math.floor(s%60);return m+':'+(ss<10?'0':'')+ss;}
+      function updateUI(){
+        var pct=vid.duration?((vid.currentTime/vid.duration)*100):0;
+        prog.style.width=pct+'%';
+        seek.value=pct;
+        tspan.textContent=fmt(vid.currentTime)+' / '+fmt(vid.duration||0);
+        var pi=pp.querySelector('.vp-icon-play'), pa=pp.querySelector('.vp-icon-pause');
+        if(vid.paused){pi.style.display='';pa.style.display='none';}
+        else{pi.style.display='none';pa.style.display='';}
+        over.style.opacity=vid.paused?'1':'0';
+      }
+      function togglePlay(){if(vid.paused){vid.play();}else{vid.pause();}}
+      pp.addEventListener('click',togglePlay);
+      bigp.addEventListener('click',togglePlay);
+      vid.addEventListener('timeupdate',updateUI);
+      vid.addEventListener('loadedmetadata',updateUI);
+      vid.addEventListener('ended',function(){over.style.opacity='1';});
+      seek.addEventListener('input',function(){if(vid.duration)vid.currentTime=(seek.value/100)*vid.duration;});
+      mute.addEventListener('click',function(){
+        vid.muted=!vid.muted;
+        mute.querySelector('.vp-icon-vol').style.display=vid.muted?'none':'';
+        mute.querySelector('.vp-icon-muted').style.display=vid.muted?'':'none';
+      });
+      vol.addEventListener('input',function(){vid.volume=parseFloat(vol.value);if(vid.muted&&vid.volume>0){vid.muted=false;mute.querySelector('.vp-icon-vol').style.display='';mute.querySelector('.vp-icon-muted').style.display='none';}});
+      // hide controls on pause overlay
+      vid.addEventListener('play',function(){setTimeout(function(){ctrl.style.opacity='1';},100);});
+    })();
+    </script>
+  </div>
+
+<div class="story-container" style="padding-top:3rem">
+
+  <!-- SEÇÃO: DESAFIO ATUAL -->
+  <div class="section-marker reveal">
+    <h2>O Novo Coronelismo: Algoritmos no Lugar do Cabresto</h2>
+  </div>
+
+  <p class="reveal">Se o Brasil resolveu, ao longo do século XX, grande parte dos obstáculos formais ao voto — quem pode votar, como votar, quando votar —, o desafio do século XXI é de outra natureza: a qualidade da escolha que o eleitor faz.</p>
+
+
+
+  <!-- ÁUDIO 5 -->
+  <div class="ap-wrap reveal">
+    <div class="ap-meta">
+      <div class="ap-icon">🎤</div>
+      <div class="ap-info">
+        <p class="ap-type">Áudio · Trecho de Entrevista</p>
+        <p class="ap-title">Prof.ª Marilyn sobre manipulação digital e fake news nas eleições</p>
+      </div>
+    </div>
+    <audio class="ap-player" controls preload="metadata">
+      <source src="audio5-marilyn-fake-news.mp3" type="audio/mpeg">
+      Seu navegador não suporta áudio HTML5.
+    </audio>
+  </div>
+
+  <!-- ÁUDIO 6 -->
+  <div class="ap-wrap reveal">
+    <div class="ap-meta">
+      <div class="ap-icon">🎤</div>
+      <div class="ap-info">
+        <p class="ap-type">Áudio · Trecho de Entrevista</p>
+        <p class="ap-title">Nishikawa sobre ignorância política e indústria cultural</p>
+      </div>
+    </div>
+    <audio class="ap-player" controls preload="metadata">
+      <source src="audio6-nishikawa-industria-cultural.mp3" type="audio/mpeg">
+      Seu navegador não suporta áudio HTML5.
+    </audio>
+  </div>
+
+  <p class="reveal">Os dois historiadores apontam, com preocupação, para o fenômeno da manipulação eleitoral nas redes sociais. Se antes o coronel usava o cabresto da dependência econômica para controlar o voto, hoje os algoritmos das plataformas digitais constroem bolhas de informação que moldam percepções, reforçam preconceitos e facilitam a disseminação de mentiras.</p>
+
+
+
+  <!-- BOLETIM DE SERVIÇO -->
+  <div class="ap-wrap ap-light reveal">
+    <div class="ap-meta">
+      <div class="ap-icon">📻</div>
+      <div class="ap-info">
+        <p class="ap-type">Rádio Serviço · 2–3 min · TRE-PR</p>
+        <p class="ap-title">Como votar em 2026: guia prático com contatos do TRE-PR Londrina</p>
+      </div>
+    </div>
+    <audio class="ap-player" controls preload="metadata">
+      <source src="boletim-servico-tre-pr.mp3" type="audio/mpeg">
+      Seu navegador não suporta áudio HTML5.
+    </audio>
+  </div>
+
+
+
+  <!-- VT: HISTÓRIA DO VOTO NO BRASIL — YouTube embed -->
+  <div class="reveal vt-youtube-wrap">
+    <div class="vt-strip vt-strip-top"></div>
+    <div class="vt-bg">
+      <div class="vt-window">
+        <div class="vt-inner">
+          <div class="vt-content">
+            <div class="vt-play-btn">
+              <div class="vt-triangle"></div>
+            </div>
+            <p class="vt-label">Vídeo Reportagem · 16:9 · Aprofundamento</p>
+            <p class="vt-title">VT: HISTÓRIA DO VOTO NO BRASIL</p>
+            <p class="vt-sub">Aguardando upload no YouTube</p>
+          </div>
+        </div>
+      </div>
+      <p class="vt-hint">Quando publicar no YouTube, cole o link aqui e ativamos o embed.</p>
+    </div>
+    <div class="vt-strip vt-strip-bottom"></div>
+  </div>
+
+  <style>
+  .vt-youtube-wrap { margin: 3rem -2rem; }
+
+  /* Tiras coloridas finas (moldura da moldura) */
+  .vt-strip { height: 5px; }
+  .vt-strip-top {
+    background: linear-gradient(90deg,
+      var(--verde) 0%, var(--verde) 16.6%,
+      var(--amarelo-vivo) 16.6%, var(--amarelo-vivo) 33.3%,
+      var(--azul-claro) 33.3%, var(--azul-claro) 50%,
+      var(--vermelho) 50%, var(--vermelho) 66.6%,
+      var(--amarelo-vivo) 66.6%, var(--amarelo-vivo) 83.3%,
+      var(--azul) 83.3%, var(--azul) 100%);
+  }
+  .vt-strip-bottom {
+    background: linear-gradient(90deg,
+      var(--azul) 0%, var(--azul) 16.6%,
+      var(--verde) 16.6%, var(--verde) 33.3%,
+      var(--amarelo-vivo) 33.3%, var(--amarelo-vivo) 50%,
+      var(--vermelho) 50%, var(--vermelho) 66.6%,
+      var(--azul-claro) 66.6%, var(--azul-claro) 83.3%,
+      var(--amarelo-vivo) 83.3%, var(--amarelo-vivo) 100%);
+  }
+
+  /* Fundo amarelo predominante */
+  .vt-bg {
+    background: var(--amarelo-vivo);
+    padding: 2.8rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Janela do vídeo — flutuante sobre o fundo amarelo */
+  .vt-window {
+    width: 100%;
+    max-width: 800px;
+    background: #0D0D0D;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow:
+      0 6px 0 3px var(--azul),
+      0 18px 60px rgba(0,0,0,.5),
+      0 0 0 3px rgba(255,255,255,.12);
+  }
+
+  .vt-inner {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+  }
+
+  .vt-content {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1.2rem; padding: 2rem; text-align: center;
+    background: radial-gradient(ellipse at center, rgba(27,63,139,.22) 0%, rgba(0,0,0,0) 70%);
+  }
+
+  .vt-play-btn {
+    width: 72px; height: 72px;
+    background: var(--amarelo-vivo);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 0 10px rgba(240,180,41,.2), 0 0 0 20px rgba(240,180,41,.08);
+    flex-shrink: 0;
+  }
+  .vt-triangle {
+    width: 0; height: 0;
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-left: 22px solid var(--escuro);
+    margin-left: 5px;
+  }
+  .vt-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .65rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--amarelo-vivo); margin: 0;
+  }
+  .vt-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 2.5vw, 1.6rem); font-weight: 900;
+    color: #fff; margin: 0; letter-spacing: .04em;
+  }
+  .vt-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .75rem; color: rgba(255,255,255,.35); margin: 0;
+    border: 1px solid rgba(255,255,255,.15);
+    padding: 4px 14px; border-radius: 20px;
+    letter-spacing: .08em; text-transform: uppercase;
+  }
+  .vt-hint {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .65rem; color: rgba(27,63,139,.65);
+    margin: .9rem 0 0; text-align: center; font-style: italic;
+  }
+  </style>
+
+</main>
+
+<!-- INFOGRÁFICO: QUEM SÃO OS VOTANTES -->
+<section style="background:var(--creme);padding:4rem 2rem">
+  <div style="max-width:720px;margin:0 auto">
+    <div class="section-marker reveal" style="margin-top:0">
+      <h2>O Brasil que vai às urnas em 2026</h2>
+    </div>
+
+    <style>
+      .vt-root{font-family:'DM Sans',sans-serif}
+      .vt-header{background:var(--azul);padding:20px 24px 16px;border-radius:8px 8px 0 0}
+      .vt-header h2{color:#fff;font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin:0 0 4px;line-height:1.2}
+      .vt-header p{color:rgba(255,255,255,.55);font-size:.75rem;margin:0;font-family:'DM Sans',sans-serif}
+      .vt-badge{display:inline-block;background:var(--amarelo-vivo);color:var(--escuro);font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:20px;margin-top:8px;letter-spacing:.05em;text-transform:uppercase}
+      .vt-body{background:white;border:1px solid var(--cinza-claro);border-top:none;border-radius:0 0 8px 8px;padding:20px}
+      .vt-total{background:var(--creme);border-radius:6px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;border-left:4px solid var(--amarelo-vivo)}
+      .vt-total-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--azul);line-height:1}
+      .vt-total-label{font-size:.75rem;color:var(--cinza);margin-top:4px;font-family:'DM Sans',sans-serif}
+      .vt-total-sub{font-size:.72rem;color:var(--cinza);text-align:right;font-family:'DM Sans',sans-serif;line-height:1.6}
+      .vt-section-label{font-family:'DM Sans',sans-serif;font-size:.62rem;font-weight:700;color:var(--cinza);text-transform:uppercase;letter-spacing:.14em;margin:18px 0 10px}
+      .vt-grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+      .vt-card{background:var(--creme);border-radius:6px;padding:14px 16px}
+      .vt-card-title{font-size:.62rem;font-weight:700;color:var(--cinza);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+      .vt-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+      .vt-bar-label{font-size:.72rem;color:var(--escuro);width:64px;flex-shrink:0;font-family:'DM Sans',sans-serif}
+      .vt-bar-track{flex:1;height:7px;background:var(--cinza-claro);border-radius:4px;overflow:hidden}
+      .vt-bar-fill{height:100%;border-radius:4px}
+      .vt-bar-pct{font-size:.72rem;font-weight:700;color:var(--escuro);width:38px;text-align:right;flex-shrink:0;font-family:'DM Sans',sans-serif}
+      .vt-gender-wrap{display:flex;gap:10px;margin-bottom:16px}
+      .vt-gender-f{flex:1;background:rgba(192,57,43,.06);border-radius:6px;padding:14px;text-align:center;border-top:3px solid var(--vermelho)}
+      .vt-gender-m{flex:1;background:rgba(27,63,139,.06);border-radius:6px;padding:14px;text-align:center;border-top:3px solid var(--azul)}
+      .vt-gender-icon{font-size:1.4rem;margin-bottom:4px}
+      .vt-gender-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;line-height:1}
+      .vt-gender-f .vt-gender-num{color:var(--vermelho)}
+      .vt-gender-m .vt-gender-num{color:var(--azul)}
+      .vt-gender-mil{font-size:.82rem;font-weight:700;margin-top:2px;font-family:'DM Sans',sans-serif}
+      .vt-gender-f .vt-gender-mil{color:var(--vermelho)}
+      .vt-gender-m .vt-gender-mil{color:var(--azul)}
+      .vt-gender-sub{font-size:.68rem;color:var(--cinza);margin-top:2px;font-family:'DM Sans',sans-serif}
+      .vt-states-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+      .vt-states-label{font-size:.72rem;color:var(--escuro);width:108px;flex-shrink:0;font-family:'DM Sans',sans-serif}
+      .vt-states-track{flex:1;height:8px;background:var(--cinza-claro);border-radius:4px;overflow:hidden}
+      .vt-states-fill{height:100%;border-radius:4px;background:var(--azul)}
+      .vt-states-pct{font-size:.7rem;color:var(--cinza);width:80px;text-align:right;flex-shrink:0;font-family:'DM Sans',sans-serif}
+      .vt-ext-row{display:flex;gap:10px}
+      .vt-ext-stat{background:var(--creme);border-radius:6px;padding:12px 14px;flex:1;text-align:center}
+      .vt-ext-num{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--azul);line-height:1.1}
+      .vt-ext-sub{font-size:.65rem;color:var(--cinza);margin-top:4px;font-family:'DM Sans',sans-serif;line-height:1.4}
+      .vt-fonte{font-size:.62rem;color:var(--cinza);margin-top:16px;text-align:right;font-family:'DM Sans',sans-serif}
+      @media(max-width:560px){.vt-grid2{grid-template-columns:1fr}.vt-ext-row{flex-direction:column}}
+    </style>
+
+    <div class="vt-root reveal">
+      <div class="vt-header">
+        <h2>Quem são os votantes no Brasil?</h2>
+        <p>Perfil do eleitorado brasileiro — Eleições 2024</p>
+        <span class="vt-badge">Dados oficiais do TSE</span>
+      </div>
+      <div class="vt-body">
+
+        <div class="vt-total">
+          <div>
+            <div class="vt-total-num">155,9 mi</div>
+            <div class="vt-total-label">Eleitores aptos a votar</div>
+          </div>
+          <div class="vt-total-sub">+5,4% vs 2020<br>4ª maior democracia do mundo</div>
+        </div>
+
+        <div class="vt-section-label">Divisão por gênero</div>
+        <div class="vt-gender-wrap">
+          <div class="vt-gender-f">
+            <div class="vt-gender-icon">♀</div>
+            <div class="vt-gender-num">52%</div>
+            <div class="vt-gender-mil">81,8 milhões</div>
+            <div class="vt-gender-sub">mulheres</div>
+          </div>
+          <div class="vt-gender-m">
+            <div class="vt-gender-icon">♂</div>
+            <div class="vt-gender-num">48%</div>
+            <div class="vt-gender-mil">74,1 milhões</div>
+            <div class="vt-gender-sub">homens</div>
+          </div>
+        </div>
+
+        <div class="vt-grid2">
+          <div class="vt-card">
+            <div class="vt-card-title">Raça / cor declarada</div>
+            <div class="vt-bar-row">
+              <span class="vt-bar-label">Parda</span>
+              <div class="vt-bar-track"><div class="vt-bar-fill" style="width:53.6%;background:#C4855A"></div></div>
+              <span class="vt-bar-pct">53,6%</span>
+            </div>
+            <div class="vt-bar-row">
+              <span class="vt-bar-label">Branca</span>
+              <div class="vt-bar-track"><div class="vt-bar-fill" style="width:33.3%;background:var(--cinza)"></div></div>
+              <span class="vt-bar-pct">33,3%</span>
+            </div>
+            <div class="vt-bar-row">
+              <span class="vt-bar-label">Preta</span>
+              <div class="vt-bar-track"><div class="vt-bar-fill" style="width:11.4%;background:var(--escuro)"></div></div>
+              <span class="vt-bar-pct">11,4%</span>
+            </div>
+            <div class="vt-bar-row">
+              <span class="vt-bar-label">Indígena</span>
+              <div class="vt-bar-track"><div class="vt-bar-fill" style="width:1%;background:var(--verde)"></div></div>
+              <span class="vt-bar-pct">1,0%</span>
+            </div>
+            <div class="vt-bar-row">
+              <span class="vt-bar-label">Amarela</span>
+              <div class="vt-bar-track"><div class="vt-bar-fill" style="width:.7%;background:var(--amarelo-vivo)"></div></div>
+              <span class="vt-bar-pct">0,7%</span>
+            </div>
+          </div>
+
+          <div class="vt-card">
+            <div class="vt-card-title">Faixa etária</div>
+            <div class="vt-bar-row">
+              <span class="vt-bar-label">16–24 anos</span>
+              <div class="vt-bar-track"><div class="vt-bar-fill" style="width:14%;background:var(--azul-claro)"></div></div>
+              <span class="vt-bar-pct" style="width:52px;font-size:.65rem">+78% jovens</span>
+            </div>
+            <div class="vt-bar-row">
+              <span class="vt-bar-label">25–44 anos</span>
+              <div class="vt-bar-track"><div class="vt-bar-fill" style="width:80%;background:var(--azul)"></div></div>
+              <span class="vt-bar-pct" style="width:52px;font-size:.65rem">62,7 mi</span>
+            </div>
+            <div class="vt-bar-row">
+              <span class="vt-bar-label">45–64 anos</span>
+              <div class="vt-bar-track"><div class="vt-bar-fill" style="width:55%;background:var(--azul)"></div></div>
+              <span class="vt-bar-pct" style="width:52px;font-size:.65rem">maioria</span>
+            </div>
+            <div class="vt-bar-row">
+              <span class="vt-bar-label">70+ anos</span>
+              <div class="vt-bar-track"><div class="vt-bar-fill" style="width:20%;background:var(--azul-claro)"></div></div>
+              <span class="vt-bar-pct" style="width:52px;font-size:.65rem">15,2 mi</span>
+            </div>
+            <div style="font-size:.65rem;color:var(--cinza);margin-top:8px;font-family:'DM Sans',sans-serif">25–44 anos = maior grupo do eleitorado</div>
+          </div>
+        </div>
+
+        <div class="vt-section-label">Maiores colégios eleitorais</div>
+        <div class="vt-states-row">
+          <span class="vt-states-label">São Paulo</span>
+          <div class="vt-states-track"><div class="vt-states-fill" style="width:100%;background:var(--azul)"></div></div>
+          <span class="vt-states-pct">34,4 mi · 22%</span>
+        </div>
+        <div class="vt-states-row">
+          <span class="vt-states-label">Minas Gerais</span>
+          <div class="vt-states-track"><div class="vt-states-fill" style="width:48%;background:var(--azul-claro)"></div></div>
+          <span class="vt-states-pct">16,5 mi · 10,5%</span>
+        </div>
+        <div class="vt-states-row">
+          <span class="vt-states-label">Rio de Janeiro</span>
+          <div class="vt-states-track"><div class="vt-states-fill" style="width:38%;background:var(--azul-claro)"></div></div>
+          <span class="vt-states-pct">13,0 mi · 8,4%</span>
+        </div>
+        <div class="vt-states-row">
+          <span class="vt-states-label" style="color:var(--verde);font-weight:700">Paraná</span>
+          <div class="vt-states-track"><div class="vt-states-fill" style="width:28%;background:var(--verde)"></div></div>
+          <span class="vt-states-pct" style="color:var(--verde);font-weight:700">8,7 mi · 5,6%</span>
+        </div>
+
+        <div class="vt-section-label">Voto no exterior — Eleições 2022</div>
+        <div class="vt-ext-row">
+          <div class="vt-ext-stat">
+            <div class="vt-ext-num">697 mil+</div>
+            <div class="vt-ext-sub">eleitores no exterior</div>
+          </div>
+          <div class="vt-ext-stat">
+            <div class="vt-ext-num">101</div>
+            <div class="vt-ext-sub">países com votação</div>
+          </div>
+          <div class="vt-ext-stat">
+            <div class="vt-ext-num" style="font-size:.9rem">Lisboa · Miami<br>Boston</div>
+            <div class="vt-ext-sub">maiores concentrações</div>
+          </div>
+        </div>
+
+        <div class="vt-fonte">Fonte: TSE — Relatório de Avaliação Eleições 2024 · tse.jus.br</div>
+      </div>
+    </div>
+  </div>
+</script>
+
+  <!-- QUIZ: A TRAJETÓRIA DO VOTO FEMININO -->
+  <div class="reveal" id="quiz-wrap">
+    <style>
+      #quiz-wrap{margin:3rem 0}
+      .qz-header{background:var(--vermelho);padding:18px 22px 14px;border-radius:8px 8px 0 0}
+      .qz-header h3{color:#fff;font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin:0 0 3px;line-height:1.2}
+      .qz-header p{color:rgba(255,255,255,.65);font-size:.72rem;margin:0;font-family:'DM Sans',sans-serif}
+      .qz-badge{display:inline-block;background:var(--amarelo-vivo);color:var(--escuro);font-size:.6rem;font-weight:700;padding:2px 9px;border-radius:20px;margin-top:7px;letter-spacing:.06em;text-transform:uppercase}
+      .qz-body{background:white;border:1px solid var(--cinza-claro);border-top:none;border-radius:0 0 8px 8px;padding:22px}
+      .qz-progress{display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
+      .qz-prog-bg{flex:1;height:4px;background:var(--cinza-claro);border-radius:2px;overflow:hidden}
+      .qz-prog-fill{height:100%;background:var(--vermelho);border-radius:2px;transition:width .4s ease;width:0%}
+      .qz-prog-label{font-family:'DM Sans',sans-serif;font-size:.68rem;color:var(--cinza);white-space:nowrap}
+      .qz-question{font-family:'Playfair Display',serif;font-size:1rem;color:var(--escuro);line-height:1.5;margin-bottom:1.2rem;font-weight:700}
+      .qz-options{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem}
+      .qz-opt{display:flex;align-items:center;gap:.8rem;background:var(--creme);border:1.5px solid var(--cinza-claro);border-radius:6px;padding:.7rem 1rem;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;font-size:.85rem;color:var(--escuro);text-align:left}
+      .qz-opt:hover:not(:disabled){border-color:var(--vermelho);background:rgba(192,57,43,.06)}
+      .qz-opt .qz-letra{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--cinza);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0;transition:all .2s;color:var(--cinza)}
+      .qz-opt.correct{border-color:var(--verde);background:rgba(45,106,45,.08);pointer-events:none}
+      .qz-opt.correct .qz-letra{background:var(--verde);border-color:var(--verde);color:#fff}
+      .qz-opt.wrong{border-color:var(--vermelho);background:rgba(192,57,43,.06);pointer-events:none}
+      .qz-opt.wrong .qz-letra{background:var(--vermelho);border-color:var(--vermelho);color:#fff}
+      .qz-opt.disabled{opacity:.5;pointer-events:none}
+      .qz-feedback{border-radius:6px;padding:.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:.8rem;line-height:1.55;display:none;margin-bottom:.8rem}
+      .qz-feedback.show{display:block}
+      .qz-feedback.ok{background:rgba(45,106,45,.08);border-left:3px solid var(--verde);color:var(--verde)}
+      .qz-feedback.no{background:rgba(192,57,43,.06);border-left:3px solid var(--vermelho);color:var(--vermelho)}
+      .qz-next{display:none;background:var(--azul);color:#fff;border:none;border-radius:6px;padding:.65rem 1.4rem;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;transition:background .2s;letter-spacing:.04em}
+      .qz-next:hover{background:var(--azul-claro)}
+      .qz-result{display:none;text-align:center;padding:1rem 0}
+      .qz-result-score{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:var(--vermelho);line-height:1}
+      .qz-result-label{font-family:'DM Sans',sans-serif;font-size:.75rem;color:var(--cinza);margin:.3rem 0 1rem;text-transform:uppercase;letter-spacing:.1em}
+      .qz-result-msg{font-family:'Source Serif 4',serif;font-size:1rem;color:var(--escuro);line-height:1.6;margin-bottom:1.2rem;font-style:italic}
+      .qz-restart{background:var(--vermelho);color:#fff;border:none;border-radius:6px;padding:.65rem 1.6rem;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;transition:background .2s}
+      .qz-restart:hover{background:#a93226}
+    </style>
+
+    <div class="qz-header">
+      <h3>Quiz: A Trajetória do Voto Feminino no Brasil</h3>
+      <p>5 perguntas · Múltipla escolha · Feedback imediato</p>
+      <span class="qz-badge">Interativo</span>
+    </div>
+    <div class="qz-body">
+      <div class="qz-progress">
+        <div class="qz-prog-bg"><div class="qz-prog-fill" id="qz-prog"></div></div>
+        <span class="qz-prog-label" id="qz-prog-lbl">Pergunta 1 de 5</span>
+      </div>
+      <div id="qz-q-area">
+        <div class="qz-question" id="qz-question"></div>
+        <div class="qz-options" id="qz-options"></div>
+        <div class="qz-feedback" id="qz-feedback"></div>
+        <button class="qz-next" id="qz-next">Próxima pergunta →</button>
+      </div>
+      <div class="qz-result" id="qz-result">
+        <div class="qz-result-score" id="qz-rscore"></div>
+        <div class="qz-result-label">acertos</div>
+        <div class="qz-result-msg" id="qz-rmsg"></div>
+        <button class="qz-restart" id="qz-restart">Tentar novamente</button>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      var questions = [
+        {
+          q: "Em que ano o voto feminino foi estabelecido no Brasil?",
+          opts: ["1889","1932","1945","1964"],
+          correct: 1,
+          ok: "Exato! Em 1932, o Código Eleitoral Brasileiro, durante o governo Getúlio Vargas, reconheceu oficialmente o direito de voto das mulheres — resultado de uma longa luta liderada por pioneiras como Bertha Lutz.",
+          no: "A resposta certa é 1932. Foi nesse ano que o Código Eleitoral Brasileiro garantiu o sufrágio feminino. Curiosamente, o Brasil foi um dos primeiros países da América Latina a dar esse passo."
+        },
+        {
+          q: "Qual foi a principal condição imposta inicialmente para que as mulheres pudessem votar no Brasil?",
+          opts: ["Ter ensino superior completo","Ser casada e ter a permissão do marido","Comprovar renda própria","Ser alfabetizada"],
+          correct: 3,
+          ok: "Isso mesmo! O Código Eleitoral de 1932 exigia que as mulheres fossem alfabetizadas para votar. Como a maioria delas não tinha acesso à educação na época, isso excluía grande parte da população feminina.",
+          no: "A resposta correta é: ser alfabetizada. Em 1932, o voto feminino foi garantido, mas com restrições — incluindo a exigência de alfabetização, que na prática impedia a maioria das mulheres."
+        },
+        {
+          q: "Qual foi a primeira mulher eleita para um cargo público no Brasil, tornando-se um símbolo da conquista do voto feminino?",
+          opts: ["Bertha Lutz","Carlota Pereira de Queirós","Nísia Floresta","Anita Garibaldi"],
+          correct: 1,
+          ok: "Parabéns! Carlota Pereira de Queirós foi eleita deputada federal em 1933, tornando-se a primeira mulher a ocupar um cargo no Legislativo federal brasileiro — apenas um ano após a conquista do voto feminino.",
+          no: "A resposta certa é Carlota Pereira de Queirós. Ela foi eleita deputada federal em 1933, sendo a primeira mulher no Legislativo federal do Brasil. Bertha Lutz, ícone do movimento sufragista, assumiu uma cadeira apenas como suplente."
+        },
+        {
+          q: "Em qual constituição brasileira o voto feminino foi garantido sem nenhuma restrição de estado civil ou renda?",
+          opts: ["Constituição de 1934","Constituição de 1946","Constituição de 1967","Constituição de 1988"],
+          correct: 0,
+          ok: "Correto! A Constituição de 1934 foi a primeira a incorporar o voto feminino sem distinção de estado civil ou renda, consolidando na lei maior o direito conquistado em 1932.",
+          no: "A resposta é a Constituição de 1934. Ela foi a primeira a garantir o voto feminino sem restrições de estado civil ou renda na Carta Magna brasileira, representando um avanço enorme na época."
+        },
+        {
+          q: "Quando o voto tornou-se obrigatório também para as mulheres no Brasil?",
+          opts: ["Em 1932, junto com a conquista do voto","Em 1934, com a nova Constituição","Em 1965, durante o regime militar","Em 1988, com a Constituição Cidadã"],
+          correct: 1,
+          ok: "Exato! A Constituição de 1934 tornou o voto obrigatório para as mulheres que exerciam função pública remunerada. A obrigatoriedade plena para todas veio se consolidando nas décadas seguintes.",
+          no: "A resposta certa é 1934. Foi a Constituição de 1934 que, pela primeira vez, incluiu o voto feminino no texto constitucional e estabeleceu a obrigatoriedade para mulheres que exerciam funções públicas remuneradas."
+        }
+      ];
+
+      var results = ["Você acertou 0/5, mas todo aprendizado começa com o primeiro passo!","Você acertou 1/5. Que tal tentar novamente e descobrir mais sobre essa luta histórica?","Você acertou 2/5! Cada conquista do voto feminino carrega uma história importante para aprender.","Você acertou 3/5! Continue explorando a trajetória das mulheres na política brasileira.","Você acertou 4/5! Quase perfeito — seu conhecimento está muito bom.","Parabéns! Você acertou 5/5 e domina a história do voto feminino!"];
+      var letters = ['A','B','C','D'];
+      var cur = 0, score = 0, answered = false;
+
+      var qEl   = document.getElementById('qz-question');
+      var opEl  = document.getElementById('qz-options');
+      var fbEl  = document.getElementById('qz-feedback');
+      var nxEl  = document.getElementById('qz-next');
+      var resEl = document.getElementById('qz-result');
+      var qaEl  = document.getElementById('qz-q-area');
+      var prog  = document.getElementById('qz-prog');
+      var pLbl  = document.getElementById('qz-prog-lbl');
+
+      function render(){
+        answered = false;
+        var q = questions[cur];
+        qEl.textContent = q.q;
+        opEl.innerHTML = '';
+        fbEl.className = 'qz-feedback';
+        fbEl.textContent = '';
+        nxEl.style.display = 'none';
+        prog.style.width = ((cur/questions.length)*100)+'%';
+        pLbl.textContent = 'Pergunta '+(cur+1)+' de '+questions.length;
+        q.opts.forEach(function(opt,i){
+          var btn = document.createElement('button');
+          btn.className = 'qz-opt';
+          btn.innerHTML = '<span class="qz-letra">'+letters[i]+'</span><span>'+opt+'</span>';
+          btn.addEventListener('click',function(){ if(!answered) answer(i,btn); });
+          opEl.appendChild(btn);
+        });
+      }
+
+      function answer(idx, btn){
+        answered = true;
+        var q = questions[cur];
+        var allOpts = opEl.querySelectorAll('.qz-opt');
+        allOpts.forEach(function(b){ b.classList.add('disabled'); });
+        if(idx === q.correct){
+          btn.classList.remove('disabled'); btn.classList.add('correct');
+          fbEl.className = 'qz-feedback show ok';
+          fbEl.textContent = q.ok;
+          score++;
+        } else {
+          btn.classList.remove('disabled'); btn.classList.add('wrong');
+          allOpts[q.correct].classList.remove('disabled'); allOpts[q.correct].classList.add('correct');
+          fbEl.className = 'qz-feedback show no';
+          fbEl.textContent = q.no;
+        }
+        nxEl.style.display = cur < questions.length-1 ? 'inline-block' : 'none';
+        if(cur === questions.length-1){
+          setTimeout(showResult, 900);
+        }
+      }
+
+      nxEl.addEventListener('click',function(){
+        cur++;
+        render();
+      });
+
+      function showResult(){
+        qaEl.style.display = 'none';
+        resEl.style.display = 'block';
+        document.getElementById('qz-rscore').textContent = score+'/5';
+        document.getElementById('qz-rmsg').textContent = results[score];
+        prog.style.width = '100%';
+        pLbl.textContent = 'Concluído';
+      }
+
+      document.getElementById('qz-restart').addEventListener('click',function(){
+        cur = 0; score = 0;
+        qaEl.style.display = 'block';
+        resEl.style.display = 'none';
+        render();
+      });
+
+      render();
+    })();
+    </script>
+
+
+<!-- ══════════════════════════════════════════ -->
+<!-- FECHAMENTO -->
+<!-- ══════════════════════════════════════════ -->
+<section class="closing-section">
+  <h2>O Peso de um <em>Gesto</em> que Custou Séculos</h2>
+  <p>Dois séculos separam o voto censitário do Império do voto universal garantido pela Constituição de 1988. O direito de votar pertence, hoje, a todos. O desafio é garantir que, ao chegar diante das urnas, o cidadão brasileiro saiba o peso daquele gesto — e o que custou para que ele pudesse ser feito em liberdade.</p>
+</section>
+
+<!-- INFOGRÁFICO: SERVIÇOS ELEITORAIS -->
+<section style="background:var(--escuro);padding:4rem 2rem">
+  <div style="max-width:720px;margin:0 auto">
+
+    <div style="text-align:center;margin-bottom:2.5rem">
+      <span style="font-family:'DM Sans',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--amarelo-vivo);display:block;margin-bottom:.6rem">Guia Prático · Eleições 2026</span>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);color:#fff;line-height:1.2;margin-bottom:.5rem">Seus direitos eleitorais na prática</h2>
+      <p style="font-family:'DM Sans',sans-serif;font-size:.85rem;color:rgba(255,255,255,.45)">Tudo que você precisa saber para estar em dia com a Justiça Eleitoral</p>
+    </div>
+
+    <style>
+      .sv2-root{font-family:'DM Sans',sans-serif}
+      .sv2-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+      .sv2-item{background:rgba(255,255,255,.05);border-radius:8px;padding:16px 18px;border-left:3px solid var(--amarelo-vivo)}
+      .sv2-item-title{font-size:.82rem;font-weight:700;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+      .sv2-icon{font-size:1.1rem}
+      .sv2-steps{margin:0;padding:0;list-style:none}
+      .sv2-steps li{font-size:.72rem;color:rgba(255,255,255,.5);padding:3px 0 3px 18px;position:relative;line-height:1.5}
+      .sv2-steps li::before{content:"→";position:absolute;left:0;color:var(--amarelo-vivo)}
+      .sv2-link{display:inline-block;margin-top:10px;font-size:.68rem;font-weight:700;color:var(--escuro);background:var(--amarelo-vivo);padding:5px 12px;border-radius:4px;text-decoration:none;letter-spacing:.04em;text-transform:uppercase}
+      .sv2-sep{height:1px;background:rgba(255,255,255,.08);margin:18px 0}
+      .sv2-app-box{background:rgba(255,255,255,.05);border-radius:8px;padding:16px 18px;display:flex;align-items:center;gap:16px;border:1px solid rgba(245,197,24,.2)}
+      .sv2-app-qr{width:60px;height:60px;background:rgba(255,255,255,.08);border-radius:8px;border:.5px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+      .sv2-app-info h3{font-size:.9rem;font-weight:700;color:#fff;margin:0 0 4px}
+      .sv2-app-info p{font-size:.72rem;color:rgba(255,255,255,.45);margin:0 0 8px;line-height:1.5}
+      .sv2-badges{display:flex;gap:6px;flex-wrap:wrap}
+      .sv2-badge{font-size:.65rem;color:var(--escuro);background:var(--amarelo-vivo);padding:3px 9px;border-radius:20px;font-weight:700;transition:opacity .2s}.sv2-badge:hover{opacity:.8}
+      .sv2-sites{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px}
+      .sv2-site{background:rgba(255,255,255,.04);border-radius:6px;padding:12px;text-align:center;border:.5px solid rgba(255,255,255,.08);transition:background .2s,border-color .2s;display:block}.sv2-site:hover{background:rgba(240,180,41,.1);border-color:rgba(240,180,41,.4)}
+      .sv2-site-icon{font-size:1.4rem;margin-bottom:4px;display:block}
+      .sv2-site-name{font-size:.72rem;font-weight:700;color:#fff}
+      .sv2-site-url{font-size:.65rem;color:var(--amarelo-vivo);margin-top:3px}
+      .sv2-footer{font-size:.62rem;color:rgba(255,255,255,.25);margin-top:16px;text-align:center;letter-spacing:.05em}
+      @media(max-width:560px){.sv2-grid{grid-template-columns:1fr}.sv2-sites{grid-template-columns:1fr 1fr}}
+    </style>
+
+    <div class="sv2-root reveal">
+      <div class="sv2-grid">
+        <div class="sv2-item">
+          <div class="sv2-item-title"><span class="sv2-icon">📍</span> Onde voto?</div>
+          <ul class="sv2-steps">
+            <li>Acesse tse.jus.br</li>
+            <li>Clique em "Local de votação"</li>
+            <li>Informe seu nome e data de nasc.</li>
+            <li>Veja zona, seção e endereço</li>
+          </ul>
+          <a class="sv2-link" href="https://www.tse.jus.br" target="_blank">tse.jus.br →</a>
+        </div>
+        <div class="sv2-item">
+          <div class="sv2-item-title"><span class="sv2-icon">🪪</span> 1º título / regularização</div>
+          <ul class="sv2-steps">
+            <li>Acesse titulo.tse.jus.br</li>
+            <li>Selecione "Alistamento" ou "Revisão"</li>
+            <li>Preencha seus dados pessoais</li>
+            <li>Envie documentação e conclua</li>
+          </ul>
+          <a class="sv2-link" href="https://www.tse.jus.br/servicos-eleitorais/autoatendimento-eleitoral#/" target="_blank">autoatendimento-eleitoral →</a>
+        </div>
+        <div class="sv2-item">
+          <div class="sv2-item-title"><span class="sv2-icon">📅</span> Justificar ausência</div>
+          <ul class="sv2-steps">
+            <li>Abra o app e-Título</li>
+            <li>Acesse "Justificativa Eleitoral"</li>
+            <li>Ou acesse tse.jus.br</li>
+            <li>Prazo: até 60 dias após a eleição</li>
+          </ul>
+          <a class="sv2-link" href="https://www.tse.jus.br/servicos-eleitorais/autoatendimento-eleitoral#/" target="_blank">autoatendimento-eleitoral →</a>
+        </div>
+        <div class="sv2-item">
+          <div class="sv2-item-title"><span class="sv2-icon">🔄</span> Transferir domicílio</div>
+          <ul class="sv2-steps">
+            <li>Acesse titulo.tse.jus.br</li>
+            <li>Escolha "Transferência de domicílio"</li>
+            <li>Comprove novo endereço</li>
+            <li>Prazo: até 151 dias antes da eleição</li>
+          </ul>
+          <a class="sv2-link" href="https://www.tse.jus.br/servicos-eleitorais/autoatendimento-eleitoral#/" target="_blank">autoatendimento-eleitoral →</a>
+        </div>
+      </div>
+
+      <div class="sv2-sep"></div>
+
+      <div class="sv2-app-box">
+        <div class="sv2-app-qr">
+          <svg viewBox="0 0 40 40" width="44" height="44" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="16" height="16" rx="2" fill="none" stroke="#F0B429" stroke-width="2"/>
+            <rect x="6" y="6" width="8" height="8" rx="1" fill="#F0B429"/>
+            <rect x="22" y="2" width="16" height="16" rx="2" fill="none" stroke="#F0B429" stroke-width="2"/>
+            <rect x="26" y="6" width="8" height="8" rx="1" fill="#F0B429"/>
+            <rect x="2" y="22" width="16" height="16" rx="2" fill="none" stroke="#F0B429" stroke-width="2"/>
+            <rect x="6" y="26" width="8" height="8" rx="1" fill="#F0B429"/>
+            <rect x="22" y="22" width="4" height="4" fill="#F0B429"/>
+            <rect x="28" y="22" width="4" height="4" fill="#F0B429"/>
+            <rect x="34" y="22" width="4" height="4" fill="#F0B429"/>
+            <rect x="22" y="28" width="4" height="4" fill="#F0B429"/>
+            <rect x="28" y="28" width="4" height="4" fill="#F0B429"/>
+            <rect x="34" y="34" width="4" height="4" fill="#F0B429"/>
+          </svg>
+        </div>
+        <div class="sv2-app-info">
+          <h3>e-Título — Aplicativo oficial do TSE</h3>
+          <p>Título digital, local de votação, justificativa de ausência e situação eleitoral — tudo no celular</p>
+          <div class="sv2-badges">
+            <a class="sv2-badge" href="https://apps.apple.com/br/app/e-t%C3%ADtulo/id1320338088" target="_blank" rel="noopener" style="text-decoration:none;cursor:pointer">🍎 App Store</a>
+            <a class="sv2-badge" href="https://play.google.com/store/apps/details?id=br.jus.tse.eleitoral.etitulo&hl=pt_BR" target="_blank" rel="noopener" style="text-decoration:none;cursor:pointer">▶ Google Play</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="sv2-sep"></div>
+
+      <div style="font-size:.65rem;color:rgba(255,255,255,.3);margin-bottom:8px;font-family:'DM Sans',sans-serif;text-transform:uppercase;letter-spacing:.1em">Sites oficiais da Justiça Eleitoral</div>
+      <div class="sv2-sites">
+        <a class="sv2-site" href="https://www.tse.jus.br" target="_blank" rel="noopener" style="text-decoration:none;cursor:pointer">
+          <span class="sv2-site-icon">⚖️</span>
+          <div class="sv2-site-name">Portal TSE</div>
+          <div class="sv2-site-url">tse.jus.br ↗</div>
+        </a>
+        <a class="sv2-site" href="https://www.tse.jus.br/servicos-eleitorais/autoatendimento-eleitoral#/" target="_blank" rel="noopener" style="text-decoration:none;cursor:pointer">
+          <span class="sv2-site-icon">✅</span>
+          <div class="sv2-site-name">Autoatendimento</div>
+          <div class="sv2-site-url">titulo.tse.jus.br ↗</div>
+        </a>
+        <a class="sv2-site" href="https://www.tse.jus.br/institucional/justica-eleitoral/tres" target="_blank" rel="noopener" style="text-decoration:none;cursor:pointer">
+          <span class="sv2-site-icon">🌐</span>
+          <div class="sv2-site-name">TREs estaduais</div>
+          <div class="sv2-site-url">via tse.jus.br ↗</div>
+        </a>
+      </div>
+
+      <div class="sv2-footer">Serviços da Justiça Eleitoral Brasileira · Tribunal Superior Eleitoral · tse.jus.br</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- RODAPÉ -->
+<footer>
+  <div class="footer-logos">
+    <div class="footer-logo-box">Eleições 2026 · #VotoNaDemocracia</div>
+    <div class="footer-logo-box">Jornalismo Multimídia · Londrina, PR</div>
+    <div class="footer-logo-box">Dados: TSE · IBGE · TRE-PR</div>
+  </div>
+  <p class="footer-copy">
+    Reportagem especial produzida para as Eleições 2026.<br>
+    Entrevistados: Prof.ª Marilyn Beloni Laureano (UEL/Colégio Paulo Freire) · Reinaldo Nishikawa, historiador (IFPR)<br>
+    © 2026 · Todos os direitos reservados.
+  </p>
+</footer>
+
+<script>
+// ── BARRA DE PROGRESSO ──
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = (scrollTop / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+});
+
+// ── REVEAL ON SCROLL ──
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => {
+    if (el.isIntersecting) {
+      el.target.classList.add('visible');
+      observer.unobserve(el.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => observer.observe(el));
+
+// ── TIMELINE DOTS (elemento removido, bloco mantido como no-op) ──
+
+// ── ENQUETE ──
+document.querySelectorAll('.enquete-option').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.enquete-option').forEach(b => b.style.borderColor = '');
+    this.style.borderColor = 'var(--amarelo-vivo)';
+    this.style.background = 'rgba(245,197,24,0.12)';
+    this.style.color = 'var(--escuro)';
+  });
+});
+
+// ── PODCAST WAVEFORM (removido — player nativo ativo) ──
+</script>
+</body>
+</html>
