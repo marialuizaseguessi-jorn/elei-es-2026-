@@ -444,7 +444,7 @@
   /* ─── VIDEO PLAYER ─── */
   .vp-wrap{margin:2rem auto}
   .vp-shell{position:relative;max-width:340px;margin:0 auto;background:#000;border-radius:12px;overflow:hidden;aspect-ratio:9/16}
-  .vp-video{width:100%;height:100%;object-fit:cover;display:block}
+  .vp-video{width:100%;height:100%;object-fit:cover;display:block;border:none}
   .vp-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35);transition:opacity .3s;cursor:pointer}
   .vp-big-play{width:64px;height:64px;border-radius:50%;background:var(--amarelo-vivo);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s}
   .vp-big-play:hover{transform:scale(1.1)}
@@ -1111,81 +1111,8 @@
   <!-- VÍDEO 1: UM MAIOR ACESSO À INFORMAÇÃO AJUDA NA HORA DE VOTAR? -->
   <div class="reveal vp-wrap" id="vp-v1">
     <div class="vp-shell">
-      <video class="vp-video" id="vid-v1" preload="metadata" playsinline>
-        <source src="video1.mp4" type="video/mp4">
-        Seu navegador não suporta vídeo HTML5.
-      </video>
-      <div class="vp-overlay" id="vp-overlay-v1">
-        <button class="vp-big-play" id="vp-bigplay-v1" aria-label="Play">
-          <span class="vp-big-triangle"></span>
-        </button>
-      </div>
-      <div class="vp-controls" id="vp-ctrl-v1">
-        <div class="vp-progress-wrap">
-          <div class="vp-progress-bg">
-            <div class="vp-progress-fill" id="vp-prog-v1"></div>
-          </div>
-          <input type="range" class="vp-seek" id="vp-seek-v1" min="0" max="100" step="0.1" value="0" aria-label="Barra de progresso">
-        </div>
-        <div class="vp-bottom">
-          <button class="vp-btn vp-playpause" id="vp-pp-v1" aria-label="Play/Pause">
-            <svg class="vp-icon-play" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
-            <svg class="vp-icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="3" width="4" height="18"/><rect x="14" y="3" width="4" height="18"/></svg>
-          </button>
-          <span class="vp-time" id="vp-time-v1">0:00 / 0:00</span>
-          <div class="vp-vol-wrap">
-            <button class="vp-btn vp-mute" id="vp-mute-v1" aria-label="Mute">
-              <svg class="vp-icon-vol" viewBox="0 0 24 24" fill="currentColor"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54,8.46a5,5,0,0,1,0,7.07"/><path d="M19.07,4.93a10,10,0,0,1,0,14.14"/></svg>
-              <svg class="vp-icon-muted" viewBox="0 0 24 24" fill="currentColor" style="display:none"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-            </button>
-            <input type="range" class="vp-vol-slider" id="vp-vol-v1" min="0" max="1" step="0.05" value="1" aria-label="Volume">
-          </div>
-          <span class="vp-label">UM MAIOR ACESSO À INFORMAÇÃO A</span>
-        </div>
-      </div>
+      <iframe class="vp-video" src="https://www.youtube.com/shorts/eKmtbiIN4dU" title="Um maior acesso à informação ajuda na hora de votar?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
-    <script>
-    (function(){
-      var vid   = document.getElementById('vid-v1');
-      var pp    = document.getElementById('vp-pp-v1');
-      var seek  = document.getElementById('vp-seek-v1');
-      var prog  = document.getElementById('vp-prog-v1');
-      var tspan = document.getElementById('vp-time-v1');
-      var mute  = document.getElementById('vp-mute-v1');
-      var vol   = document.getElementById('vp-vol-v1');
-      var over  = document.getElementById('vp-overlay-v1');
-      var bigp  = document.getElementById('vp-bigplay-v1');
-      var ctrl  = document.getElementById('vp-ctrl-v1');
-      if(!vid) return;
-
-      function fmt(s){var m=Math.floor(s/60);var ss=Math.floor(s%60);return m+':'+(ss<10?'0':'')+ss;}
-      function updateUI(){
-        var pct=vid.duration?((vid.currentTime/vid.duration)*100):0;
-        prog.style.width=pct+'%';
-        seek.value=pct;
-        tspan.textContent=fmt(vid.currentTime)+' / '+fmt(vid.duration||0);
-        var pi=pp.querySelector('.vp-icon-play'), pa=pp.querySelector('.vp-icon-pause');
-        if(vid.paused){pi.style.display='';pa.style.display='none';}
-        else{pi.style.display='none';pa.style.display='';}
-        over.style.opacity=vid.paused?'1':'0';
-      }
-      function togglePlay(){if(vid.paused){vid.play();}else{vid.pause();}}
-      pp.addEventListener('click',togglePlay);
-      bigp.addEventListener('click',togglePlay);
-      vid.addEventListener('timeupdate',updateUI);
-      vid.addEventListener('loadedmetadata',updateUI);
-      vid.addEventListener('ended',function(){over.style.opacity='1';});
-      seek.addEventListener('input',function(){if(vid.duration)vid.currentTime=(seek.value/100)*vid.duration;});
-      mute.addEventListener('click',function(){
-        vid.muted=!vid.muted;
-        mute.querySelector('.vp-icon-vol').style.display=vid.muted?'none':'';
-        mute.querySelector('.vp-icon-muted').style.display=vid.muted?'':'none';
-      });
-      vol.addEventListener('input',function(){vid.volume=parseFloat(vol.value);if(vid.muted&&vid.volume>0){vid.muted=false;mute.querySelector('.vp-icon-vol').style.display='';mute.querySelector('.vp-icon-muted').style.display='none';}});
-      // hide controls on pause overlay
-      vid.addEventListener('play',function(){setTimeout(function(){ctrl.style.opacity='1';},100);});
-    })();
-    </script>
   </div>
 
 
@@ -1361,81 +1288,8 @@
   <!-- VÍDEO 3: AS PESSOAS SABEM O QUE ERA O VOTO DE CABRESTO? -->
   <div class="reveal vp-wrap" id="vp-v3">
     <div class="vp-shell">
-      <video class="vp-video" id="vid-v3" preload="metadata" playsinline>
-        <source src="video3.mp4" type="video/mp4">
-        Seu navegador não suporta vídeo HTML5.
-      </video>
-      <div class="vp-overlay" id="vp-overlay-v3">
-        <button class="vp-big-play" id="vp-bigplay-v3" aria-label="Play">
-          <span class="vp-big-triangle"></span>
-        </button>
-      </div>
-      <div class="vp-controls" id="vp-ctrl-v3">
-        <div class="vp-progress-wrap">
-          <div class="vp-progress-bg">
-            <div class="vp-progress-fill" id="vp-prog-v3"></div>
-          </div>
-          <input type="range" class="vp-seek" id="vp-seek-v3" min="0" max="100" step="0.1" value="0" aria-label="Barra de progresso">
-        </div>
-        <div class="vp-bottom">
-          <button class="vp-btn vp-playpause" id="vp-pp-v3" aria-label="Play/Pause">
-            <svg class="vp-icon-play" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
-            <svg class="vp-icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="3" width="4" height="18"/><rect x="14" y="3" width="4" height="18"/></svg>
-          </button>
-          <span class="vp-time" id="vp-time-v3">0:00 / 0:00</span>
-          <div class="vp-vol-wrap">
-            <button class="vp-btn vp-mute" id="vp-mute-v3" aria-label="Mute">
-              <svg class="vp-icon-vol" viewBox="0 0 24 24" fill="currentColor"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54,8.46a5,5,0,0,1,0,7.07"/><path d="M19.07,4.93a10,10,0,0,1,0,14.14"/></svg>
-              <svg class="vp-icon-muted" viewBox="0 0 24 24" fill="currentColor" style="display:none"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-            </button>
-            <input type="range" class="vp-vol-slider" id="vp-vol-v3" min="0" max="1" step="0.05" value="1" aria-label="Volume">
-          </div>
-          <span class="vp-label">AS PESSOAS SABEM O QUE ERA O V</span>
-        </div>
-      </div>
+      <iframe class="vp-video" src="https://www.youtube.com/shorts/oVo3Z3zHgO4" title="As pessoas sabem o que era o voto de cabresto?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
-    <script>
-    (function(){
-      var vid   = document.getElementById('vid-v3');
-      var pp    = document.getElementById('vp-pp-v3');
-      var seek  = document.getElementById('vp-seek-v3');
-      var prog  = document.getElementById('vp-prog-v3');
-      var tspan = document.getElementById('vp-time-v3');
-      var mute  = document.getElementById('vp-mute-v3');
-      var vol   = document.getElementById('vp-vol-v3');
-      var over  = document.getElementById('vp-overlay-v3');
-      var bigp  = document.getElementById('vp-bigplay-v3');
-      var ctrl  = document.getElementById('vp-ctrl-v3');
-      if(!vid) return;
-
-      function fmt(s){var m=Math.floor(s/60);var ss=Math.floor(s%60);return m+':'+(ss<10?'0':'')+ss;}
-      function updateUI(){
-        var pct=vid.duration?((vid.currentTime/vid.duration)*100):0;
-        prog.style.width=pct+'%';
-        seek.value=pct;
-        tspan.textContent=fmt(vid.currentTime)+' / '+fmt(vid.duration||0);
-        var pi=pp.querySelector('.vp-icon-play'), pa=pp.querySelector('.vp-icon-pause');
-        if(vid.paused){pi.style.display='';pa.style.display='none';}
-        else{pi.style.display='none';pa.style.display='';}
-        over.style.opacity=vid.paused?'1':'0';
-      }
-      function togglePlay(){if(vid.paused){vid.play();}else{vid.pause();}}
-      pp.addEventListener('click',togglePlay);
-      bigp.addEventListener('click',togglePlay);
-      vid.addEventListener('timeupdate',updateUI);
-      vid.addEventListener('loadedmetadata',updateUI);
-      vid.addEventListener('ended',function(){over.style.opacity='1';});
-      seek.addEventListener('input',function(){if(vid.duration)vid.currentTime=(seek.value/100)*vid.duration;});
-      mute.addEventListener('click',function(){
-        vid.muted=!vid.muted;
-        mute.querySelector('.vp-icon-vol').style.display=vid.muted?'none':'';
-        mute.querySelector('.vp-icon-muted').style.display=vid.muted?'':'none';
-      });
-      vol.addEventListener('input',function(){vid.volume=parseFloat(vol.value);if(vid.muted&&vid.volume>0){vid.muted=false;mute.querySelector('.vp-icon-vol').style.display='';mute.querySelector('.vp-icon-muted').style.display='none';}});
-      // hide controls on pause overlay
-      vid.addEventListener('play',function(){setTimeout(function(){ctrl.style.opacity='1';},100);});
-    })();
-    </script>
   </div>
 
 
@@ -1474,81 +1328,8 @@
   <!-- VÍDEO 4: VOCÊ SABIA QUE O VOTO NO BRASIL NEM SEMPRE FOI SECRETO E ACESSÍVEL? -->
   <div class="reveal vp-wrap" id="vp-v4">
     <div class="vp-shell">
-      <video class="vp-video" id="vid-v4" preload="metadata" playsinline>
-        <source src="video4.mp4" type="video/mp4">
-        Seu navegador não suporta vídeo HTML5.
-      </video>
-      <div class="vp-overlay" id="vp-overlay-v4">
-        <button class="vp-big-play" id="vp-bigplay-v4" aria-label="Play">
-          <span class="vp-big-triangle"></span>
-        </button>
-      </div>
-      <div class="vp-controls" id="vp-ctrl-v4">
-        <div class="vp-progress-wrap">
-          <div class="vp-progress-bg">
-            <div class="vp-progress-fill" id="vp-prog-v4"></div>
-          </div>
-          <input type="range" class="vp-seek" id="vp-seek-v4" min="0" max="100" step="0.1" value="0" aria-label="Barra de progresso">
-        </div>
-        <div class="vp-bottom">
-          <button class="vp-btn vp-playpause" id="vp-pp-v4" aria-label="Play/Pause">
-            <svg class="vp-icon-play" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
-            <svg class="vp-icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="3" width="4" height="18"/><rect x="14" y="3" width="4" height="18"/></svg>
-          </button>
-          <span class="vp-time" id="vp-time-v4">0:00 / 0:00</span>
-          <div class="vp-vol-wrap">
-            <button class="vp-btn vp-mute" id="vp-mute-v4" aria-label="Mute">
-              <svg class="vp-icon-vol" viewBox="0 0 24 24" fill="currentColor"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54,8.46a5,5,0,0,1,0,7.07"/><path d="M19.07,4.93a10,10,0,0,1,0,14.14"/></svg>
-              <svg class="vp-icon-muted" viewBox="0 0 24 24" fill="currentColor" style="display:none"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-            </button>
-            <input type="range" class="vp-vol-slider" id="vp-vol-v4" min="0" max="1" step="0.05" value="1" aria-label="Volume">
-          </div>
-          <span class="vp-label">VOCÊ SABIA QUE O VOTO NO BRASI</span>
-        </div>
-      </div>
+      <iframe class="vp-video" src="https://www.youtube.com/shorts/g9xljKTo9p0" title="Você sabia que o voto no Brasil nem sempre foi secreto e acessível?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
-    <script>
-    (function(){
-      var vid   = document.getElementById('vid-v4');
-      var pp    = document.getElementById('vp-pp-v4');
-      var seek  = document.getElementById('vp-seek-v4');
-      var prog  = document.getElementById('vp-prog-v4');
-      var tspan = document.getElementById('vp-time-v4');
-      var mute  = document.getElementById('vp-mute-v4');
-      var vol   = document.getElementById('vp-vol-v4');
-      var over  = document.getElementById('vp-overlay-v4');
-      var bigp  = document.getElementById('vp-bigplay-v4');
-      var ctrl  = document.getElementById('vp-ctrl-v4');
-      if(!vid) return;
-
-      function fmt(s){var m=Math.floor(s/60);var ss=Math.floor(s%60);return m+':'+(ss<10?'0':'')+ss;}
-      function updateUI(){
-        var pct=vid.duration?((vid.currentTime/vid.duration)*100):0;
-        prog.style.width=pct+'%';
-        seek.value=pct;
-        tspan.textContent=fmt(vid.currentTime)+' / '+fmt(vid.duration||0);
-        var pi=pp.querySelector('.vp-icon-play'), pa=pp.querySelector('.vp-icon-pause');
-        if(vid.paused){pi.style.display='';pa.style.display='none';}
-        else{pi.style.display='none';pa.style.display='';}
-        over.style.opacity=vid.paused?'1':'0';
-      }
-      function togglePlay(){if(vid.paused){vid.play();}else{vid.pause();}}
-      pp.addEventListener('click',togglePlay);
-      bigp.addEventListener('click',togglePlay);
-      vid.addEventListener('timeupdate',updateUI);
-      vid.addEventListener('loadedmetadata',updateUI);
-      vid.addEventListener('ended',function(){over.style.opacity='1';});
-      seek.addEventListener('input',function(){if(vid.duration)vid.currentTime=(seek.value/100)*vid.duration;});
-      mute.addEventListener('click',function(){
-        vid.muted=!vid.muted;
-        mute.querySelector('.vp-icon-vol').style.display=vid.muted?'none':'';
-        mute.querySelector('.vp-icon-muted').style.display=vid.muted?'':'none';
-      });
-      vol.addEventListener('input',function(){vid.volume=parseFloat(vol.value);if(vid.muted&&vid.volume>0){vid.muted=false;mute.querySelector('.vp-icon-vol').style.display='';mute.querySelector('.vp-icon-muted').style.display='none';}});
-      // hide controls on pause overlay
-      vid.addEventListener('play',function(){setTimeout(function(){ctrl.style.opacity='1';},100);});
-    })();
-    </script>
   </div>
 
 
@@ -1672,81 +1453,8 @@
   <!-- VÍDEO 5: NA HORA DE VOTAR, O QUE PESA MAIS? -->
   <div class="reveal vp-wrap" id="vp-v5">
     <div class="vp-shell">
-      <video class="vp-video" id="vid-v5" preload="metadata" playsinline>
-        <source src="video5.mp4" type="video/mp4">
-        Seu navegador não suporta vídeo HTML5.
-      </video>
-      <div class="vp-overlay" id="vp-overlay-v5">
-        <button class="vp-big-play" id="vp-bigplay-v5" aria-label="Play">
-          <span class="vp-big-triangle"></span>
-        </button>
-      </div>
-      <div class="vp-controls" id="vp-ctrl-v5">
-        <div class="vp-progress-wrap">
-          <div class="vp-progress-bg">
-            <div class="vp-progress-fill" id="vp-prog-v5"></div>
-          </div>
-          <input type="range" class="vp-seek" id="vp-seek-v5" min="0" max="100" step="0.1" value="0" aria-label="Barra de progresso">
-        </div>
-        <div class="vp-bottom">
-          <button class="vp-btn vp-playpause" id="vp-pp-v5" aria-label="Play/Pause">
-            <svg class="vp-icon-play" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
-            <svg class="vp-icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="3" width="4" height="18"/><rect x="14" y="3" width="4" height="18"/></svg>
-          </button>
-          <span class="vp-time" id="vp-time-v5">0:00 / 0:00</span>
-          <div class="vp-vol-wrap">
-            <button class="vp-btn vp-mute" id="vp-mute-v5" aria-label="Mute">
-              <svg class="vp-icon-vol" viewBox="0 0 24 24" fill="currentColor"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54,8.46a5,5,0,0,1,0,7.07"/><path d="M19.07,4.93a10,10,0,0,1,0,14.14"/></svg>
-              <svg class="vp-icon-muted" viewBox="0 0 24 24" fill="currentColor" style="display:none"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-            </button>
-            <input type="range" class="vp-vol-slider" id="vp-vol-v5" min="0" max="1" step="0.05" value="1" aria-label="Volume">
-          </div>
-          <span class="vp-label">NA HORA DE VOTAR, O QUE PESA M</span>
-        </div>
-      </div>
+      <iframe class="vp-video" src="https://www.youtube.com/shorts/l3Boj9mdfYg" title="Na hora de votar, o que pesa mais?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
-    <script>
-    (function(){
-      var vid   = document.getElementById('vid-v5');
-      var pp    = document.getElementById('vp-pp-v5');
-      var seek  = document.getElementById('vp-seek-v5');
-      var prog  = document.getElementById('vp-prog-v5');
-      var tspan = document.getElementById('vp-time-v5');
-      var mute  = document.getElementById('vp-mute-v5');
-      var vol   = document.getElementById('vp-vol-v5');
-      var over  = document.getElementById('vp-overlay-v5');
-      var bigp  = document.getElementById('vp-bigplay-v5');
-      var ctrl  = document.getElementById('vp-ctrl-v5');
-      if(!vid) return;
-
-      function fmt(s){var m=Math.floor(s/60);var ss=Math.floor(s%60);return m+':'+(ss<10?'0':'')+ss;}
-      function updateUI(){
-        var pct=vid.duration?((vid.currentTime/vid.duration)*100):0;
-        prog.style.width=pct+'%';
-        seek.value=pct;
-        tspan.textContent=fmt(vid.currentTime)+' / '+fmt(vid.duration||0);
-        var pi=pp.querySelector('.vp-icon-play'), pa=pp.querySelector('.vp-icon-pause');
-        if(vid.paused){pi.style.display='';pa.style.display='none';}
-        else{pi.style.display='none';pa.style.display='';}
-        over.style.opacity=vid.paused?'1':'0';
-      }
-      function togglePlay(){if(vid.paused){vid.play();}else{vid.pause();}}
-      pp.addEventListener('click',togglePlay);
-      bigp.addEventListener('click',togglePlay);
-      vid.addEventListener('timeupdate',updateUI);
-      vid.addEventListener('loadedmetadata',updateUI);
-      vid.addEventListener('ended',function(){over.style.opacity='1';});
-      seek.addEventListener('input',function(){if(vid.duration)vid.currentTime=(seek.value/100)*vid.duration;});
-      mute.addEventListener('click',function(){
-        vid.muted=!vid.muted;
-        mute.querySelector('.vp-icon-vol').style.display=vid.muted?'none':'';
-        mute.querySelector('.vp-icon-muted').style.display=vid.muted?'':'none';
-      });
-      vol.addEventListener('input',function(){vid.volume=parseFloat(vol.value);if(vid.muted&&vid.volume>0){vid.muted=false;mute.querySelector('.vp-icon-vol').style.display='';mute.querySelector('.vp-icon-muted').style.display='none';}});
-      // hide controls on pause overlay
-      vid.addEventListener('play',function(){setTimeout(function(){ctrl.style.opacity='1';},100);});
-    })();
-    </script>
   </div>
 
 <div class="story-container" style="padding-top:3rem">
