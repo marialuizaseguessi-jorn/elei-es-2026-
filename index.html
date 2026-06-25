@@ -700,44 +700,6 @@
     box-shadow: 0 16px 48px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.18);
   }
 
-  /* ─── GALERIA (CARROSSEL PLACEHOLDER) ─── */
-  .carrossel-placeholder {
-    background: var(--cinza-claro);
-    border: 2px dashed rgba(0,0,0,0.15);
-    border-radius: 8px;
-    margin: 3rem 0;
-    padding: 2rem;
-    text-align: center;
-  }
-
-  .carrossel-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 6px;
-    margin-bottom: 1.5rem;
-  }
-
-  .carrossel-thumb {
-    aspect-ratio: 1;
-    background: var(--cinza);
-    border-radius: 4px;
-    opacity: 0.3;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem;
-  }
-
-  .carrossel-thumb:first-child {
-    opacity: 0.7;
-    background: var(--azul);
-  }
-
-  .carrossel-info {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.8rem;
-    color: var(--cinza);
-    font-weight: 500;
-  }
-
   /* ─── ENQUETE PLACEHOLDER ─── */
   .enquete-placeholder {
     background: white;
@@ -1034,7 +996,6 @@
   /* ─── RESPONSIVE ─── */
   @media (max-width: 600px) {
     .pullquote { margin: 3rem -2rem; }
-    .carrossel-grid { grid-template-columns: repeat(3, 1fr); }
     .era-card { min-width: 220px; }
     .podcast-waveform span:nth-child(n+20) { display: none; }
   }
@@ -1062,7 +1023,7 @@
   <p class="hero-subtitle">A longa e desigual história da democracia no Brasil — do voto censitário do Império à Constituição Cidadã de 1988.</p>
   <div class="hero-meta">
     <span>Por <strong>Equipe de Jornalismo Multimídia</strong></span>
-    <span>Publicado em <strong>Maio de 2026</strong></span>
+    <span>Publicado em <strong>Junho de 2026</strong></span>
     <span>Londrina, PR</span>
   </div>
   <div class="scroll-hint">
@@ -1070,29 +1031,6 @@
     Role para ler
   </div>
 </section>
-
-<!-- ══════════════════════════════════════════ -->
-<!-- PODCAST — antes do texto principal -->
-<!-- ══════════════════════════════════════════ -->
-<div style="background:var(--escuro);padding:1.5rem 2rem 2rem">
-  <div style="max-width:720px;margin:0 auto">
-    <p style="font-family:'DM Sans',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.8rem">🎙 Ouça antes de ler</p>
-    <div class="podcast-placeholder" style="margin:0;border:none">
-      <div class="podcast-header">
-        <div class="podcast-cover">🎙️</div>
-        <div class="podcast-meta">
-          <p class="media-type">Podcast-Entrevista</p>
-          <p class="podcast-title">Análise Completa: A História do Voto no Brasil</p>
-          <p class="podcast-guest">Com Prof.ª Marilyn Laureano e historiador Nishikawa</p>
-        </div>
-      </div>
-      <audio id="audio-podcast" controls preload="metadata" style="width:100%;height:40px;accent-color:var(--amarelo-vivo);filter:invert(1) sepia(1) saturate(2) hue-rotate(175deg)">
-        <source src="podcast-historia-voto-brasil.mp3" type="audio/mpeg">
-        Seu navegador não suporta áudio HTML5.
-      </audio>
-    </div>
-  </div>
-</div>
 
 <!-- ══════════════════════════════════════════ -->
 <!-- CONTEÚDO PRINCIPAL -->
@@ -1383,81 +1321,12 @@
 
   <p class="reveal">Outra conquista que merece destaque é a modernização do sistema eleitoral com a introdução da urna eletrônica, na década de 1990. O Brasil tornou-se referência mundial em votação eletrônica, com resultados confiáveis, rápidos e acessíveis, incluindo fotos dos candidatos para eleitores com dificuldade de leitura.</p>
 
-  <!-- CARROSSEL FULLWIDTH -->
-</div><!-- fecha story-container -->
-<div class="fw-wrap reveal">
-  <div class="fw-label">📷 Carrossel de Fotos · Documental / Narrativo · 10–15 imagens com legendas expandidas</div>
-  <div class="fw-track" id="fw-track">
-    <div class="fw-slide"><div class="fw-img p1"></div><div class="fw-cap"><strong>Foto 01</strong> — [ Inserir imagem e legenda expandida com contexto local ]</div></div>
-    <div class="fw-slide"><div class="fw-img p2"></div><div class="fw-cap"><strong>Foto 02</strong> — [ Inserir imagem e legenda expandida com contexto local ]</div></div>
-    <div class="fw-slide"><div class="fw-img p3"></div><div class="fw-cap"><strong>Foto 03</strong> — [ Inserir imagem e legenda expandida com contexto local ]</div></div>
-    <div class="fw-slide"><div class="fw-img p4"></div><div class="fw-cap"><strong>Foto 04</strong> — [ Inserir imagem e legenda expandida com contexto local ]</div></div>
-    <div class="fw-slide"><div class="fw-img p5"></div><div class="fw-cap"><strong>Foto 05</strong> — [ Inserir imagem e legenda expandida com contexto local ]</div></div>
-    <div class="fw-slide"><div class="fw-img p6"></div><div class="fw-cap"><strong>Foto 06</strong> — [ Inserir imagem e legenda expandida com contexto local ]</div></div>
-    <div class="fw-slide"><div class="fw-img p7"></div><div class="fw-cap"><strong>Foto 07</strong> — [ Inserir imagem e legenda expandida com contexto local ]</div></div>
-  </div>
-  <div class="fw-bottom">
-    <div class="fw-dots" id="fw-dots"></div>
-    <div class="fw-hint">← role com o mouse para navegar →</div>
-  </div>
-</div>
-<style>
-.fw-wrap{width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:#111;overflow:hidden;margin-top:3rem;margin-bottom:0}
-.fw-label{font-family:'DM Sans',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:1.2rem 2.5rem .8rem}
-.fw-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none}
-.fw-track::-webkit-scrollbar{display:none}
-.fw-slide{min-width:100vw;flex:0 0 100vw;scroll-snap-align:start;position:relative}
-.fw-img{width:100%;height:70vh;min-height:380px;background:#222;display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(255,255,255,.1)}
-.fw-img.p1{background:linear-gradient(135deg,#1B3F8B 0%,#0D2040 100%)}
-.fw-img.p2{background:linear-gradient(135deg,#2D6A2D 0%,#173817 100%)}
-.fw-img.p3{background:linear-gradient(135deg,#5A1010 0%,#C0392B 100%)}
-.fw-img.p4{background:linear-gradient(135deg,#2C2C2C 0%,#555 100%)}
-.fw-img.p5{background:linear-gradient(135deg,#1B3F8B 0%,#4A90D9 100%)}
-.fw-img.p6{background:linear-gradient(135deg,#2D6A2D 0%,#F5C518 100%)}
-.fw-img.p7{background:linear-gradient(135deg,#0D0D0D 0%,#2C2C2C 100%)}
-.fw-img::after{content:"[ inserir foto ]";font-family:'DM Sans',sans-serif;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.2)}
-.fw-cap{padding:1rem 2.5rem 1.2rem;font-family:'DM Sans',sans-serif;font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.5;border-top:.5px solid rgba(255,255,255,.08)}
-.fw-cap strong{color:rgba(255,255,255,.8);font-weight:600}
-.fw-bottom{display:flex;align-items:center;justify-content:center;gap:1.5rem;padding:.8rem 2.5rem 1.5rem;border-top:.5px solid rgba(255,255,255,.06)}
-.fw-dots{display:flex;gap:.4rem}
-.fw-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.18);cursor:pointer;border:none;padding:0;transition:background .3s,transform .3s}
-.fw-dot.active{background:#F0B429;transform:scale(1.4)}
-.fw-hint{font-family:'DM Sans',sans-serif;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2)}
-</style>
-<script>
-(function(){
-  var t=document.getElementById('fw-track');
-  var d=document.getElementById('fw-dots');
-  var slides=t.querySelectorAll('.fw-slide');
-  slides.forEach(function(_,i){
-    var dot=document.createElement('button');
-    dot.className='fw-dot'+(i===0?' active':'');
-    dot.addEventListener('click',function(){t.scrollTo({left:t.offsetWidth*i,behavior:'smooth'});});
-    d.appendChild(dot);
-  });
-  function upd(){
-    var idx=Math.min(Math.round(t.scrollLeft/t.offsetWidth),slides.length-1);
-    d.querySelectorAll('.fw-dot').forEach(function(dot,i){dot.classList.toggle('active',i===idx);});
-  }
-  t.addEventListener('scroll',upd,{passive:true});
-  document.addEventListener('wheel',function(e){
-    var r=t.getBoundingClientRect();
-    if(e.clientY>=r.top&&e.clientY<=r.bottom){
-      var delta=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;
-      if(Math.abs(delta)>2){e.preventDefault();t.scrollLeft+=delta;}
-    }
-  },{passive:false});
-})();
-</script>
-
   <!-- VÍDEO 5: NA HORA DE VOTAR, O QUE PESA MAIS? -->
   <div class="reveal vp-wrap" id="vp-v5">
     <div class="vp-shell">
       <iframe class="vp-video" src="https://player.vimeo.com/video/1200622166" title="Na hora de votar, o que pesa mais?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
-
-<div class="story-container" style="padding-top:3rem">
 
   <!-- SEÇÃO: DESAFIO ATUAL -->
   <div class="section-marker reveal">
@@ -1516,6 +1385,8 @@
       Seu navegador não suporta áudio HTML5.
     </audio>
   </div>
+
+  <p class="reveal">Dois séculos separam o voto censitário do Império do voto universal garantido pela Constituição de 1988. O direito de votar pertence, hoje, a todos. O desafio é garantir que, ao chegar diante das urnas, o cidadão brasileiro saiba o peso daquele gesto — e o que custou para que ele pudesse ser feito em liberdade.</p>
 
 
 
@@ -1823,7 +1694,7 @@
           </div>
           <div class="vt-ext-stat">
             <div class="vt-ext-num" style="font-size:.9rem">Lisboa · Miami<br>Boston</div>
-            <div class="vt-ext-sub">maiores concentrações</div>
+            <div class="vt-ext-sub">maiores concentrações de eleitores brasileiros no exterior</div>
           </div>
         </div>
 
@@ -1832,6 +1703,29 @@
     </div>
   </div>
 </script>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- PODCAST — antes do QUIZ -->
+<!-- ══════════════════════════════════════════ -->
+<div style="background:var(--escuro);padding:1.5rem 2rem 2rem">
+  <div style="max-width:720px;margin:0 auto">
+    <p style="font-family:'DM Sans',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.8rem">🎙 Ouça antes de ler</p>
+    <div class="podcast-placeholder" style="margin:0;border:none">
+      <div class="podcast-header">
+        <div class="podcast-cover">🎙️</div>
+        <div class="podcast-meta">
+          <p class="media-type">Podcast-Entrevista</p>
+          <p class="podcast-title">Análise Completa: A História do Voto no Brasil</p>
+          <p class="podcast-guest">Com Prof.ª Marilyn Laureano e historiador Nishikawa</p>
+        </div>
+      </div>
+      <audio id="audio-podcast" controls preload="metadata" style="width:100%;height:40px;accent-color:var(--amarelo-vivo);filter:invert(1) sepia(1) saturate(2) hue-rotate(175deg)">
+        <source src="podcast-historia-voto-brasil.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio HTML5.
+      </audio>
+    </div>
+  </div>
+</div>
 
   <!-- QUIZ: A TRAJETÓRIA DO VOTO FEMININO -->
   <div class="reveal" id="quiz-wrap">
@@ -2014,13 +1908,7 @@
     </script>
 
 
-<!-- ══════════════════════════════════════════ -->
-<!-- FECHAMENTO -->
-<!-- ══════════════════════════════════════════ -->
-<section class="closing-section">
-  <h2>O Peso de um <em>Gesto</em> que Custou Séculos</h2>
-  <p>Dois séculos separam o voto censitário do Império do voto universal garantido pela Constituição de 1988. O direito de votar pertence, hoje, a todos. O desafio é garantir que, ao chegar diante das urnas, o cidadão brasileiro saiba o peso daquele gesto — e o que custou para que ele pudesse ser feito em liberdade.</p>
-</section>
+
 
 <!-- INFOGRÁFICO: SERVIÇOS ELEITORAIS -->
 <section style="background:var(--escuro);padding:4rem 2rem">
